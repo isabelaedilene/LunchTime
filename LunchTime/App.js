@@ -16,7 +16,7 @@ export default class App extends React.Component {
   }
 
   getButton = () => {
-    fetch('http://192.168.25.7:9090/users',{
+    fetch('http://127.0.0.1:9090/users',{
       method: 'GET'
     }).then((responseData) => {
       return responseData.json();
@@ -33,7 +33,7 @@ export default class App extends React.Component {
   }
 
   saveButton = () => {
-    fetch('http://192.168.25.7:9090/users',{
+    fetch('http://127.0.0.1:9090/users',{
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -55,7 +55,7 @@ export default class App extends React.Component {
   }
 
   searchButton = () =>{
-    fetch('http://192.168.25.7:9090/users/'+(this.idCliente),{
+    fetch('http://127.0.0.1:9090/users/'+(this.idCliente),{
       method: 'GET'
     }).then((responseData) => {
       return responseData.json();
@@ -72,7 +72,7 @@ export default class App extends React.Component {
   }
 
   deleteButton = () =>{
-    fetch('http://192.168.25.7:9090/users/'+(this.idCliente),{
+    fetch('http://127.0.0.1:9090/users/'+(this.idCliente),{
       method: 'DELETE'
     }).then((responseData) => {
       console.log(responseData.rows);
@@ -85,7 +85,7 @@ export default class App extends React.Component {
   }
 
   updateButton = () => {
-    fetch('http://192.168.25.7:9090/users',{
+    fetch('http://127.0.0.1:9090/users',{
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -141,7 +141,7 @@ export default class App extends React.Component {
           underlineColorAndroid = 'transparent'
         />
         <TextInput style={styles.input}
-          placeholder = 'Gênero'
+          placeholder = 'Telefone'
           onChangeText = {(text) => {this.telefoneCliente = text}}
           value = {this.telefoneCliente}
           underlineColorAndroid = 'transparent'
@@ -149,6 +149,8 @@ export default class App extends React.Component {
         <TouchableHighlight style={styles.button} onPress = {this.saveButton}>
           <Text style={styles.textStyle}>Registar</Text>
         </TouchableHighlight>
+        <Text>Pesquisar</Text>
+        <View style={styles.divider}></View>
         <TextInput style={styles.input}
           placeholder = 'Código'
           onChangeText = {(text) => {this.idCliente = text}}
