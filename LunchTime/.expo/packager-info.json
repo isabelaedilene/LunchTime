@@ -1,8 +1,9 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 10996,
+  "packagerPid": 10488,
   "expoServerNgrokUrl": "https://k4-pea.anonymous.lunchtime.exp.direct",
   "packagerNgrokUrl": "https://packager.k4-pea.anonymous.lunchtime.exp.direct",
-  "ngrokPid": 14852
+  "ngrokPid": 15076,
+  "devToolsPort": 19002
 }
