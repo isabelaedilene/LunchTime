@@ -14,7 +14,9 @@
     "mysqli": "^3.0.6",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "sequelize": "^4.43.0"
+    "sequelize": "^4.43.0",
+    "react-navigation": "latest",
+    "color": "latest"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
