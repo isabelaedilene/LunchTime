@@ -1,6 +1,17 @@
 import React from 'react';
+import Routes from './client/routes';
 import { StyleSheet, Text, View, TextInput, TouchableHighlight, ScrollView } from 'react-native';
 
+export default class App extends React.Component{
+  render() {
+    return (
+        <Routes/>
+    )
+  }
+}
+
+
+/*
 export default class App extends React.Component {
   constructor(props){
     super(props)
@@ -215,3 +226,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+*/
