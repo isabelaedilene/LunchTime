@@ -40,6 +40,6 @@ Serão complementados os próximos passos para iniciar a aplicação mobile.
 **Passo 7**  
 Na pasta 'LunchTime' abrir uma janela do terminal e executar o comando  
  'expo start'  
- Isso vai inicilizar a aplicação react. É necessári utilizar o celular para scanear o Qrcode e abrir a aplicação no celular.  
+ Isso vai inicilizar a aplicação react. É necessário utilizar o celular para scanear o Qrcode e abrir a aplicação no celular.  
  
  
