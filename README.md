@@ -33,5 +33,13 @@ Para fins de verificação, verifique no mysql se a estrutura do banco 'lunchdb'
 
 **Passo 6**  
 Servidor back-end funcionando.  
-Serão complementados os próximos passos para iniciar a aplicação mobile.
+Serão complementados os próximos passos para iniciar a aplicação mobile.  
+
+
+**Front End**  
+**Passo 7**  
+Na pasta 'LunchTime' abrir uma janela do terminal e executar o comando  
+ 'expo start'  
+ Isso vai inicilizar a aplicação react. É necessári utilizar o celular para scanear o Qrcode e abrir a aplicação no celular.  
+ 
  
