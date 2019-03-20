@@ -22,7 +22,7 @@ As dependências vão ser instaladas ou verificadas.
 **Passo 4**  
 Iniciar o servidor.  
 Comando: 'node .\server.js'  
-Nesse momento no janela do terminal ao iniciar o servidor vai ser exibido a mensagem 'server started';  
+Nesse momento na janela do terminal ao iniciar o servidor vai ser exibido a mensagem 'server started';  
 Para fins de teste abrir uma aba no navegador com o endereço 'localhost:9090/'  
 Deverá aparecer uma linha com a informação do express: 'Node Express API';  
 
