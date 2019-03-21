@@ -10,8 +10,39 @@ exports.get = async (req, res) => {
     });
 };
 
-exports.getById = (req, res, next) => {
-    res.status(200).send('Requisição recebida com sucesso!');
+exports.search = async (req, res) => {
+    const user = null; 
+    if(req.params.nomeRestaurante !== null && req.params.tipoRestaurante !== null){
+    user = await models.Restaurantes.findAll({
+        where: {
+          nomeRestaurante: {
+              [Op.like]: '%'+req.params.nomeRestaurante+'%'
+            },
+            tipoRestaurante: {
+                [Op.like]: '%'+req.params.tipoRestaurante+'%'
+            }
+        }
+      });
+    }else if(req.params.nomeRestaurante !== null && req.params.tipoRestaurante == null){
+        user = await models.Restaurantes.findAll({
+            where: {
+              nomeRestaurante: {
+                  [Op.like]: '%'+req.params.nomeRestaurante+'%'
+                }
+            }
+          });
+    }else if(req.params.nomeRestaurante == null && req.params.tipoRestaurante !== null){
+        user = await models.Restaurantes.findAll({
+            where: {
+                tipoRestaurante: {
+                    [Op.like]: '%'+req.params.tipoRestaurante+'%'
+                }
+            }
+          });
+    }else {
+        user = await models.Restaurantes.findAll();
+    }
+      res.json(user);
 };
 
 

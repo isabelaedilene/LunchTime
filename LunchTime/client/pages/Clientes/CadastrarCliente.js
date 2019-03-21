@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, View, TextInput, TouchableHighlight, ScrollView } from 'react-native';
 import { styles } from '../../style';
 
+const apiUrl = "http://localhost:9090/client/";
+
 export default class Cliente extends React.Component {
     constructor(props){
       super(props)
@@ -34,7 +36,7 @@ export default class Cliente extends React.Component {
     }
   
     saveButton = () => {
-      fetch('',{
+      fetch(apiUrl,{
         method: 'POST',
         headers: {
             'Accept': 'application/json',

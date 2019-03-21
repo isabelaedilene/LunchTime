@@ -10,23 +10,27 @@ exports.get = async (req, res) => {
     });
 };
 
-exports.getById = (req, res, next) => {
-    res.status(200).send('Requisição recebida com sucesso!');
+
+exports.post = async (req, res) => {
+    const user = await models.Clientes.create(req.body);
+    //res.json(user);
 };
 
 
-
-exports.post = (req, res, next) => {
-    res.status(201).send('Requisição recebida com sucesso!');
+exports.put = async (req, res) => {
+    const user = await models.Clientes.update({
+        req,
+      }, {
+        where: {
+            idCliente: req.params.codigo
+        }
+      });
 };
 
-
-exports.put = (req, res, next) => {
-    let id = req.params.id;
-    res.status(201).send(`Requisição recebida com sucesso! ${id}`);
-};
-
-exports.delete = (req, res, next) => {
-    let id = req.params.id;
-    res.status(200).send(`Requisição recebida com sucesso! ${id}`);
+exports.delete = async (req, res) => {
+    const user = await models.Clientes.destroy({
+        where: {
+            idCliente: req.params.codigo
+        }
+      });
 };
