@@ -22,16 +22,45 @@ export default {
       borderColor: '#48afdb',
       borderRadius: 5,
     },
-    button: {
-      paddingTop: 10,
-      paddingBottom: 10,
-      borderRadius: 5,
-      marginBottom: 3,
-      width: '90%',
-      backgroundColor: '#00BCD4',
-    },
     textStyle: {
       color: '#fff',
       textAlign: 'center',
+    },
+
+    /* Botões do Index */
+    btnCliente: {
+      backgroundColor:"#FFA500",
+      flexGrow: 1,
+      margin: 2,
+      padding: 10,
+      justifyContent: 'center',
+      borderRadius: 10,
+      width: '95%',
+      height: '40%',
+    },
+    textCliente: {
+      color: '#FFFFFF',
+      fontSize: 25,
+    },
+
+    btnRestaurante:{
+      backgroundColor: "#8B542F",
+      flexGrow: 1,
+      margin: 2,
+      marginTop: 5,
+      padding: 10,
+      justifyContent: 'center',
+      borderRadius: 10,
+      width: '95%',
+      height: '40%',
+    },
+    textRestaurante: {
+      color: '#FFFFFF',
+      fontSize: 25,
+    },
+
+    container: {
+      paddingTop: 60,
+      alignItems: 'center'
     },
   };

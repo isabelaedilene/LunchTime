@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, Button, Text, FlatList, TouchableOpacity } from 'react-native';
-
+import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
+import { styles} from '../../style';
 
 const apiUrl = "http://localhost:9090";
 
 class Main extends Component{
     static navigationOptions = {
-        title: 'Restaurantes',
+        title: 'lunchTime',
     };
 
     state = {
@@ -65,25 +65,27 @@ class Main extends Component{
 
     render(){
         return (
-            <View>
-                <Button
-                    onPress={() => this.props.navigation.navigate('CadastrarRestaurante')}
-                    title="Entrar como restaurante"
-                    color="#841584"
-                    accessibilityLabel="Clique aqui para acessar como restaurante."
-                />
-                <Button
+            <View style={styles.container}>
+
+                <TouchableHighlight 
+                    style={styles.btnCliente} 
                     onPress={() => this.props.navigation.navigate('CadastrarCliente')}
-                    title="Entrar como cliente"
-                    color="#841584"
-                    accessibilityLabel="Clique aqui para acessar como cliente."
-                />
-				<Button
+                >
+                    <Text style={styles.textCliente}>ENTRAR COMO CLIENTE</Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight 
+                    style={styles.btnRestaurante}
+                    onPress={() => this.props.navigation.navigate('CadastrarRestaurante')}
+                >
+                    <Text style={styles.textRestaurante}>ENTRAR COMO RESTAURANTE</Text>
+                </TouchableHighlight>  
+				<TouchableHighlight 
+                    style={styles.btnRestaurante}
                     onPress={() => this.props.navigation.navigate('PesquisarRestaurante')}
-                    title="Pesquisar Restaurantes"
-                    color="#841584"
-                    accessibilityLabel="Clique aqui para pesquisar restaurantes."
-                />
+                >
+                    <Text style={styles.textRestaurante}>PESQUISAR RESTAURANTE</Text>
+                </TouchableHighlight>
             </View>
         );
     };
