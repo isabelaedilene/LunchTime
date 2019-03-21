@@ -78,6 +78,12 @@ class Main extends Component{
                     color="#841584"
                     accessibilityLabel="Clique aqui para acessar como cliente."
                 />
+				<Button
+                    onPress={() => this.props.navigation.navigate('PesquisarRestaurante')}
+                    title="Pesquisar Restaurantes"
+                    color="#841584"
+                    accessibilityLabel="Clique aqui para pesquisar restaurantes."
+                />
             </View>
         );
     };
