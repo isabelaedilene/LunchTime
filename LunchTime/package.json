@@ -8,15 +8,15 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "color": "latest",
     "expo": "^32.0.0",
     "express": "^4.16.4",
     "mysql2": "^1.6.5",
     "mysqli": "^3.0.6",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "sequelize": "^4.43.0",
-    "react-navigation": "latest",
-    "color": "latest"
+    "react-navigation": "^3.5.1",
+    "sequelize": "^4.43.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
