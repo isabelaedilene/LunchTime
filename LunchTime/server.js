@@ -17,10 +17,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Importação dos pacotes
 const index = require('./app/routes/index');
 const restaurantRoute = require('./app/routes/restaurantRoute');
+const clientRoute = require('./app/routes/clientRoute');
 
 // Rotas
 app.use('/', index);
 app.use('/restaurant', restaurantRoute);
+app.use('/client', clientRoute);
 
 
 

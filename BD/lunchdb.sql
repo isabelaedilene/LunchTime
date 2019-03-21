@@ -96,13 +96,13 @@ CREATE TABLE `imagempedidos` (
 -- Estrutura da tabela `imagemprodutos`
 --
 
-CREATE TABLE `imagemprodutos` (
-  `idImagemProduto` int(11) NOT NULL,
-  `idProduto_fk` int(11) NOT NULL,
-  `nomeImagemProduto` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--CREATE TABLE `imagemprodutos` (
+--  `idImagemProduto` int(11) NOT NULL,
+--  `idProduto_fk` int(11) NOT NULL,
+--  `nomeImagemProduto` varchar(255) NOT NULL,
+--  `createdAt` datetime NOT NULL,
+--  `updatedAt` datetime NOT NULL
+--) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -168,17 +168,17 @@ CREATE TABLE `restaurantes` (
   `telefoneRestaurante` varchar(255) NOT NULL,
   `emailRestaurante` varchar(255) NOT NULL,
   `senhaRestaurante` varchar(255) NOT NULL,
-  `nomeRepresentante` varchar(255) NOT NULL,
-  `emailRepresentante` varchar(255) NOT NULL,
-  `telefoneRepresentante` varchar(255) NOT NULL,
+--  `nomeRepresentante` varchar(255) NOT NULL,
+--  `emailRepresentante` varchar(255) NOT NULL,
+--  `telefoneRepresentante` varchar(255) NOT NULL,
   `cepRestaurante` varchar(255) NOT NULL,
   `estadoRestaurante` varchar(255) NOT NULL,
   `cidadeRestaurante` varchar(255) NOT NULL,
   `bairroRestaurante` varchar(255) NOT NULL,
   `ruaRestaurante` varchar(255) NOT NULL,
   `numeroRestaurante` int(11) NOT NULL,
-  `pontoReferenciaRestaurante` varchar(255) NOT NULL,
-  `complementoRestaurante` varchar(255) NOT NULL,
+  `pontoReferenciaRestaurante` varchar(255) NULL,
+  `complementoRestaurante` varchar(255) NULL,
   `tipoRestaurante` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
