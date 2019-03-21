@@ -10,11 +10,11 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/lunchTime.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/lunchTime.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FF0000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
