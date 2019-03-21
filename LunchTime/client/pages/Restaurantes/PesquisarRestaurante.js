@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, TouchableHighlight, ScrollView } from 'react-native';
 import { styles } from '../../style';
 
-export default class CadastrarRestaurante extends Component {
+export default class PesquisarRestaurante extends Component {
     static navigationOptions = {
         title: "Pesquisar"
     };

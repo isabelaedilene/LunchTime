@@ -6,7 +6,7 @@ const apiUrl = "http://localhost:9090";
 
 class Main extends Component{
     static navigationOptions = {
-        title: 'Restaurankktes',
+        title: 'Restaurantes',
     };
 
     state = {

@@ -1,10 +1,10 @@
 {
   "expoServerNgrokUrl": "https://3e-484.anonymous.lunchtime.exp.direct",
   "packagerNgrokUrl": "https://packager.3e-484.anonymous.lunchtime.exp.direct",
-  "ngrokPid": 2992,
+  "ngrokPid": 16484,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 10620,
+  "packagerPid": 17304,
   "webpackServerPort": null
 }
