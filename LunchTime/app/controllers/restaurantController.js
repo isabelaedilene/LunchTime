@@ -1,6 +1,6 @@
 const models = require('../models');
 
-exports.get = async (req, res) => {
+exports.get = async (req, res, next) => {
     models.Restaurantes.findAll({
         include: [{all: true}],
     }).then(function (restaurantes) {
@@ -8,6 +8,10 @@ exports.get = async (req, res) => {
             restaurantes: restaurantes
         });
     });
+};
+
+exports.getById = async (req, res, next) => {
+    models.Restaurantes.findById(req.params.id).then((result) => res.json(result))
 };
 
 exports.search = async (req, res) => {
@@ -48,7 +52,22 @@ exports.search = async (req, res) => {
 
 
 exports.post = (req, res, next) => {
-    res.status(201).send('Requisição recebida com sucesso!');
+    models.Restaurantes.create({
+        nomeRestaurante: req.body.nomeRestaurante,
+        cnpjRestaurante: req.body.cnpjRestaurante,
+        telefoneRestaurante: req.body.telefoneRestaurante,
+        emailRestaurante: req.body.emailRestaurante,
+        senhaRestaurante: req.body.senhaRestaurante,
+        cepRestaurante: req.body.cepRestaurante,
+        estadoRestaurante: req.body.estadoRestaurante,
+        cidadeRestaurante: req.body.cidadeRestaurante,
+        bairroRestaurante: req.body.bairroRestaurante,
+        ruaRestaurante: req.body.ruaRestaurante,
+        numeroRestaurante: req.body.numeroRestaurante,
+        pontoReferenciaRestaurante: req.body.pontoReferenciaRestaurante,
+        complementoRestaurante: req.body.complementoRestaurante,
+        tipoRestaurante: req.body.tipoRestaurante,
+    }).then((result) => res.json(result))
 };
 
 
