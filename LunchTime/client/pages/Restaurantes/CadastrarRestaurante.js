@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import {View, Button, Text, FlatList, TouchableOpacity, TextInput, TouchableHighlight, ScrollView} from 'react-native';
+import { Text, View, TextInput, TouchableHighlight, ScrollView } from 'react-native';
 import { styles } from '../../style';
 
-class CadastrarRestaurante extends Component {
-    static navigationOptions = {
+const apiUrl = "http://localhost:9090/restaurant/search/";
+
+export default class CadastrarRestaurante extends Component {
+
+   static navigationOptions = {
         title: "Cadastrar"
     };
 
@@ -18,9 +21,6 @@ class CadastrarRestaurante extends Component {
         this.telefoneRestaurante = null;
         this.emailRestaurante = null;
         this.senhaRestaurante = null;
-        this.nomeRepresentante = null;
-        this.emailRepresentante = null;
-        this.telefoneRepresentante = null;
         this.cepRestaurante = null;
         this.estadoRestaurante = null;
         this.cidadeRestaurante = null;
@@ -47,9 +47,6 @@ class CadastrarRestaurante extends Component {
         this.telefoneRestaurante = null;
         this.emailRestaurante = null;
         this.senhaRestaurante = null;
-        this.nomeRepresentante = null;
-        this.emailRepresentante = null;
-        this.telefoneRepresentante = null;
         this.cepRestaurante = null;
         this.estadoRestaurante = null;
         this.cidadeRestaurante = null;
@@ -62,7 +59,7 @@ class CadastrarRestaurante extends Component {
     };
 
     saveButton = () => {
-        fetch('', {
+        fetch(api, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -98,9 +95,6 @@ class CadastrarRestaurante extends Component {
         this.telefoneRestaurante = null;
         this.emailRestaurante = null;
         this.senhaRestaurante = null;
-        this.nomeRepresentante = null;
-        this.emailRepresentante = null;
-        this.telefoneRepresentante = null;
         this.cepRestaurante = null;
         this.estadoRestaurante = null;
         this.cidadeRestaurante = null;
@@ -123,9 +117,6 @@ class CadastrarRestaurante extends Component {
                         <Text style={{color: '#511099'}}>{jsonData.telefoneRestaurante} | </Text>
                         <Text style={{color: '#FF5722'}}>{jsonData.emailRestaurante} | </Text>
                         <Text style={{color: '#511099'}}>{jsonData.senhaRestaurante} | </Text>
-                        <Text style={{color: '#FF5722'}}>{jsonData.nomeRepresentante} | </Text>
-                        <Text style={{color: '#511099'}}>{jsonData.emailRepresentante} | </Text>
-                        <Text style={{color: '#FF5722'}}>{jsonData.telefoneRepresentante} | </Text>
                         <Text style={{color: '#511099'}}>{jsonData.cepRestaurante} | </Text>
                         <Text style={{color: '#FF5722'}}>{jsonData.estadoRestaurante} | </Text>
                         <Text style={{color: '#511099'}}>{jsonData.cidadeRestaurante} | </Text>
@@ -142,115 +133,101 @@ class CadastrarRestaurante extends Component {
 
         return (
             <View style={styles.container}>
-                <Text>LunchTime</Text>
-                <View style={styles.divider}></View>
-                <TextInput style={styles.input}
-                           placeholder = 'Nome Restaurante'
-                           onChangeText = {(text) => {this.nomeRestaurante = text}}
-                           value = {this.nomeRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'CNPJ Restaurante'
-                           onChangeText = {(text) => {this.cnpjRestaurante = text}}
-                           value = {this.cnpjRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Telefone Restaurante'
-                           onChangeText = {(text) => {this.telefoneRestaurante = text}}
-                           value = {this.telefoneRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'E-mail Restaurante'
-                           onChangeText = {(text) => {this.emailRestaurante = text}}
-                           value = {this.emailRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Senha Restaurante'
-                           onChangeText = {(text) => {this.senhaRestaurante = text}}
-                           value = {this.senhaRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Nome Representante'
-                           onChangeText = {(text) => {this.nomeRepresentante = text}}
-                           value = {this.nomeRepresentante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'E-mail Representante'
-                           onChangeText = {(text) => {this.emailRepresentante = text}}
-                           value = {this.emailRepresentante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Telefone Representante'
-                           onChangeText = {(text) => {this.telefoneRepresentante = text}}
-                           value = {this.telefoneRepresentante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'CEP Restaurante'
-                           onChangeText = {(text) => {this.cepRestaurante = text}}
-                           value = {this.cepRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Estado Restaurante'
-                           onChangeText = {(text) => {this.estadoRestaurante = text}}
-                           value = {this.estadoRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Cidade Restaurante'
-                           onChangeText = {(text) => {this.cidadeRestaurante = text}}
-                           value = {this.cidadeRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Bairro Restaurante'
-                           onChangeText = {(text) => {this.bairroRestaurante = text}}
-                           value = {this.bairroRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Rua Restaurante'
-                           onChangeText = {(text) => {this.ruaRestaurante = text}}
-                           value = {this.ruaRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Número Restaurante'
-                           onChangeText = {(text) => {this.numeroRestaurante = text}}
-                           value = {this.numeroRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Ponto Referência Restaurante'
-                           onChangeText = {(text) => {this.pontoReferenciaRestaurante = text}}
-                           value = {this.pontoReferenciaRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Complemento Restaurante'
-                           onChangeText = {(text) => {this.complementoRestaurante = text}}
-                           value = {this.complementoRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TextInput style={styles.input}
-                           placeholder = 'Nome Restaurante'
-                           onChangeText = {(text) => {this.tipoRestaurante = text}}
-                           value = {this.tipoRestaurante}
-                           underlineColorAndroid = 'transparent'
-                />
-                <TouchableHighlight style={styles.button} onPress = {this.saveButton}>
-                    <Text style={styles.textStyle}>Registar</Text>
-                </TouchableHighlight>
-                <ScrollView contentContainerStyle={styles.container}>
-                    {dataDisplay}
+                <ScrollView>
+                    <Text style={{padding: 10}}>Dados</Text>
+                    <View style={styles.divider}></View>
+                    <TextInput style={styles.input}
+                               placeholder = 'Nome Restaurante'
+                               onChangeText = {(text) => {this.nomeRestaurante = text}}
+                               value = {this.nomeRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'CNPJ Restaurante'
+                               onChangeText = {(text) => {this.cnpjRestaurante = text}}
+                               value = {this.cnpjRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Telefone Restaurante'
+                               onChangeText = {(text) => {this.telefoneRestaurante = text}}
+                               value = {this.telefoneRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'E-mail Restaurante'
+                               onChangeText = {(text) => {this.emailRestaurante = text}}
+                               value = {this.emailRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Senha Restaurante'
+                               onChangeText = {(text) => {this.senhaRestaurante = text}}
+                               value = {this.senhaRestaurante}
+                               secureTextEntry={true}
+                               password={true}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <Text style={{padding: 10}}>Dados de endereço</Text>
+                    <View style={styles.divider}></View>
+                    <TextInput style={styles.input}
+                               placeholder = 'CEP Restaurante'
+                               onChangeText = {(text) => {this.cepRestaurante = text}}
+                               value = {this.cepRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Estado Restaurante'
+                               onChangeText = {(text) => {this.estadoRestaurante = text}}
+                               value = {this.estadoRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Cidade Restaurante'
+                               onChangeText = {(text) => {this.cidadeRestaurante = text}}
+                               value = {this.cidadeRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Bairro Restaurante'
+                               onChangeText = {(text) => {this.bairroRestaurante = text}}
+                               value = {this.bairroRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Rua Restaurante'
+                               onChangeText = {(text) => {this.ruaRestaurante = text}}
+                               value = {this.ruaRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Número Restaurante'
+                               onChangeText = {(text) => {this.numeroRestaurante = text}}
+                               value = {this.numeroRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Ponto Referência Restaurante'
+                               onChangeText = {(text) => {this.pontoReferenciaRestaurante = text}}
+                               value = {this.pontoReferenciaRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Complemento Restaurante'
+                               onChangeText = {(text) => {this.complementoRestaurante = text}}
+                               value = {this.complementoRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <TextInput style={styles.input}
+                               placeholder = 'Nome Restaurante'
+                               onChangeText = {(text) => {this.tipoRestaurante = text}}
+                               value = {this.tipoRestaurante}
+                               underlineColorAndroid = 'transparent'
+                    />
+                    <ScrollView contentContainerStyle={styles.container}>
+                        {dataDisplay}
+                    </ScrollView>
+                    <Button title="Registrar" onPress={this.saveButton} color="#841584"/>
                 </ScrollView>
             </View>
         )
