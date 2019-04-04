@@ -4,15 +4,14 @@ import { styles } from '../../style';
 
 const apiUrl = "http://localhost:9090/restaurant/search/";
 
-export default class CadastrarRestaurante extends Component {
+export default class PesquisarRestaurante extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      apiData: []
-       this.nomeRestaurante = null;
-    this.tipoRestaurante = null;
-  }
+  constructor(props) {
+      super(props);
+      this.state = { apiData: [] };
+      this.nomeRestaurante = null;
+      this.tipoRestaurante = null;
+  };
 
  static navigationOptions = {
         title: "Pesquisar"

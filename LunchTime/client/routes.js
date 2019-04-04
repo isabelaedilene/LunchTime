@@ -3,6 +3,9 @@ import Main from './pages/Main';
 import CadastrarRestaurante from './pages/Restaurantes/CadastrarRestaurante';
 import CadastrarCliente from './pages/Clientes/CadastrarCliente';
 import PesquisarRestaurante from './pages/Restaurantes/PesquisarRestaurante';
+import LoginRestaurante from './pages/Login/LoginRestaurante';
+import PerfilRestaurante from './pages/Restaurantes/PerfilRestaurante';
+
 import { colors } from './style';
 
 const Routes = createAppContainer(
@@ -12,6 +15,8 @@ const Routes = createAppContainer(
             CadastrarRestaurante: {screen: CadastrarRestaurante},
             CadastrarCliente: {screen: CadastrarCliente},
             PesquisarRestaurante: {screen: PesquisarRestaurante},
+            LoginRestaurante: {screen: LoginRestaurante},
+            PerfilRestaurante: {screen: PerfilRestaurante},
         },
         {
             defaultNavigationOptions: {

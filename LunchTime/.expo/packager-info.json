@@ -1,9 +1,10 @@
 {
-  "devToolsPort": 19002,
-  "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 14484,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPid": 2424,
+  "webpackServerPort": null,
+  "expoServerNgrokUrl": "https://qn-nv4.anonymous.lunchtime.exp.direct",
+  "packagerNgrokUrl": "https://packager.qn-nv4.anonymous.lunchtime.exp.direct",
+  "ngrokPid": 6460,
+  "devToolsPort": 19002,
+  "expoServerPort": 19000
 }

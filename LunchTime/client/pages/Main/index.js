@@ -76,7 +76,7 @@ class Main extends Component{
 
                 <TouchableHighlight 
                     style={styles.btnRestaurante}
-                    onPress={() => this.props.navigation.navigate('CadastrarRestaurante')}
+                    onPress={() => this.props.navigation.navigate('LoginRestaurante')}
                 >
                     <Text style={styles.textRestaurante}>ENTRAR COMO RESTAURANTE</Text>
                 </TouchableHighlight>  
