@@ -4,13 +4,21 @@ import { styles } from '../../style';
 
 const apiUrl = "http://localhost:9090/restaurant/search/";
 
-export default class CadastrarRestaurante extends Component {
+export default class PesquisarRestaurante extends Component {
 
   constructor(props){
+<<<<<<< Updated upstream
     super(props)
     this.state = {
       apiData: []
        this.nomeRestaurante = null;
+=======
+    super(props);
+    this.state = {
+      apiData: []
+	};
+    this.nomeRestaurante = null;
+>>>>>>> Stashed changes
     this.tipoRestaurante = null;
   }
 

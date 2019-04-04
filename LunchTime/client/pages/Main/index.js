@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
+import { View, Text, TouchableHighlight, StyleSheet, ActivityIndicator} from 'react-native';
 import { styles} from '../../style';
+import {Font} from 'expo';
 
 const apiUrl = "http://localhost:9090";
 
 class Main extends Component{
     static navigationOptions = {
-        title: 'lunchTime',
-    };
+        title: 'LunchTime',
+    }; 
+
+    constructor(){
+        super()
+        this.state={
+            fontLoaded:false
+        }        
+    }
+
+    async componentWillMount(){
+        await Font.loadAsync({
+            'AlfaSlabOne-Regular': require('../../../assets/fonts/AlfaSlabOne-Regular.ttf'),
+        });
+        this.setState({fontLoaded: true})
+    }
 
     state = {
         restauranteInfo: [],
@@ -65,27 +80,35 @@ class Main extends Component{
 
     render(){
         return (
+
+ 
             <View style={styles.container}>
 
-                <TouchableHighlight 
-                    style={styles.btnCliente} 
-                    onPress={() => this.props.navigation.navigate('CadastrarCliente')}
-                >
-                    <Text style={styles.textCliente}>ENTRAR COMO CLIENTE</Text>
-                </TouchableHighlight>
+                <View style={styles.posix}>
+                
+                        <TouchableHighlight 
+                            style={styles.btnCliente} 
+                            onPress={() => this.props.navigation.navigate('LoginCliente')}
+                        >
+                            {this.state.fontLoaded?(
+                                <Text style={styles.textEntry}>ENTRAR COMO CLIENTE</Text>
+                            ):(
+                                <ActivityIndicator size="large"/>
+                            )}
+                        </TouchableHighlight>
 
-                <TouchableHighlight 
-                    style={styles.btnRestaurante}
-                    onPress={() => this.props.navigation.navigate('CadastrarRestaurante')}
-                >
-                    <Text style={styles.textRestaurante}>ENTRAR COMO RESTAURANTE</Text>
-                </TouchableHighlight>  
-				<TouchableHighlight 
-                    style={styles.btnRestaurante}
-                    onPress={() => this.props.navigation.navigate('PesquisarRestaurante')}
-                >
-                    <Text style={styles.textRestaurante}>PESQUISAR RESTAURANTE</Text>
-                </TouchableHighlight>
+                        <TouchableHighlight 
+                            style={styles.btnRestaurante}
+                            onPress={() => this.props.navigation.navigate('CadastrarRestaurante')}
+                        >
+                            {this.state.fontLoaded?(
+                                <Text style={styles.textCadastra}>ENTRAR COMO RESTAURANTE </Text>
+                            ):(
+                                <ActivityIndicator size="large"/>
+                            )}
+                        </TouchableHighlight>  
+                </View>
+                    
             </View>
         );
     };

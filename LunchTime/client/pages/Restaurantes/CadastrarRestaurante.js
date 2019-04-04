@@ -233,5 +233,3 @@ export default class CadastrarRestaurante extends Component {
         )
     }
 }
-
-export default CadastrarRestaurante;

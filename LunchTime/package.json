@@ -22,5 +22,10 @@
     "babel-preset-expo": "^5.0.0",
     "sequelize-cli": "^5.4.0"
   },
+
+  "rnpm":{
+    "assets":["./assets/fonts/"]
+  },
+
   "private": true
 }
