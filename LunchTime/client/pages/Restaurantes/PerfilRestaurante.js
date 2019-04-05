@@ -35,7 +35,7 @@ class PerfilRestaurante extends Component {
 
     async getButton() {
         try {
-            let response = await fetch('http://192.168.43.238:9090/restaurant/1',);
+            let response = await fetch('http://192.168.0.16:9090/restaurant/1',);
             let responseJson = await response.json();
             console.log(responseJson);
             this.setState({
@@ -87,7 +87,7 @@ class PerfilRestaurante extends Component {
 
     saveButton = () => {
         console.log(this.state);
-        fetch('http:192.168.43.238:9090/restaurant/1', {
+        fetch('http:192.168.0.16:9090/restaurant/1', {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

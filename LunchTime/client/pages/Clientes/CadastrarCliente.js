@@ -1,22 +1,37 @@
 import React from 'react';
-import { Text, View, TextInput, TouchableHighlight, ScrollView } from 'react-native';
+import { Text, View, TextInput, TouchableHighlight, ScrollView, ActivityIndicator } from 'react-native';
 import { styles } from '../../style';
+import {Font} from 'expo';
 
 const apiUrl = "http://localhost:9090/client/";
 
 export default class Cliente extends React.Component {
+
+    static navigationOptions = {
+      title: 'LunchTime',
+    };
+
     constructor(props){
       super(props)
       this.state = {
         apiData: [],
-        rawData: []
-      }
+        rawData: [],
+        fontLoaded:false,
+      }, 
       this.idCliente = null;
       this.nomeCliente = null;
       this.emailCliente = null;
       this.senhaCliente = null;
       this.telefoneCliente = null;
-    }
+    }   
+
+  async componentWillMount(){
+      await Font.loadAsync({
+          'Acme-Regular': require('../../../assets/fonts/Acme-Regular.ttf'),
+      });
+      this.setState({fontLoaded: true})
+  }
+
   
     getButton = () => {
       fetch('',{
@@ -122,25 +137,31 @@ export default class Cliente extends React.Component {
       });
       return (
         <View style={styles.container}>
-          <Text>LunchTime</Text>
-          <View style={styles.divider}></View>
+        
+          {this.state.fontLoaded?(
+              <Text style={styles.textLoginClient}>LunchTime</Text>
+          ):(
+              <ActivityIndicator size="large"/>
+          )}
   
           <TextInput style={styles.input}
-            placeholder = 'nomeCliente'
+            placeholder = 'Nome e Sobrenome'
             onChangeText = {(text) => {this.nomeCliente = text}}
             value = {this.nomeCliente}
             underlineColorAndroid = 'transparent'
           />
           <TextInput style={styles.input}
-            placeholder = 'emailCliente'
+            placeholder = 'E-mail'
             onChangeText = {(text) => {this.emailCliente = text}}
             value = {this.emailCliente}
             underlineColorAndroid = 'transparent'
           />
           <TextInput style={styles.input}
-            placeholder = 'senhaCliente'
+            placeholder = 'Senha'
             onChangeText = {(text) => {this.senhaCliente = text}}
             value = {this.senhaCliente}
+            password={true}
+            secureTextEntry={true}
             underlineColorAndroid = 'transparent'
           />
           <TextInput style={styles.input}
@@ -149,30 +170,17 @@ export default class Cliente extends React.Component {
             value = {this.telefoneCliente}
             underlineColorAndroid = 'transparent'
           />
-          <TouchableHighlight style={styles.button} onPress = {this.saveButton}>
-            <Text style={styles.textStyle}>Registar</Text>
+          <TouchableHighlight 
+              style={styles.btnLogin} 
+              onPress = {this.saveButton}
+          >
+              {this.state.fontLoaded?(
+                  <Text style={styles.textEntry}> Cadastrar </Text>
+              ):(
+                  <ActivityIndicator size="large"/>
+              )}
           </TouchableHighlight>
-          <Text>Pesquisar</Text>
-          <View style={styles.divider}></View>
-          <TextInput style={styles.input}
-            placeholder = 'Código'
-            onChangeText = {(text) => {this.idCliente = text}}
-            value = {this.idCliente}
-            underlineColorAndroid = 'transparent'
-          />
-          <TouchableHighlight style={styles.button} onPress = {this.searchButton}>
-            <Text style={styles.textStyle}>Pesquisar</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.button} onPress = {this.getButton}>
-            <Text style={styles.textStyle}>Ver Usuários</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.button} onPress = {this.deleteButton}>
-            <Text style={styles.textStyle}>Deletar</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.button} onPress = {this.updateButton}>
-            <Text style={styles.textStyle}>Atualizar</Text>
-          </TouchableHighlight>
-  
+
           <ScrollView contentContainerStyle={styles.container}>
             {dataDisplay}
           </ScrollView>

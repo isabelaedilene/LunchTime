@@ -31,7 +31,7 @@ class CadastrarRestaurante extends Component {
     }
 
     saveButton = () => {
-        fetch('http:192.168.43.238:9090/restaurant/', {
+        fetch('http:192.168.0.16:9090/restaurant/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
