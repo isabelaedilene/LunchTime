@@ -83,9 +83,8 @@ class Main extends Component{
 
  
             <View style={styles.container}>
-
                 <View style={styles.posix}>
-                
+
                         <TouchableHighlight 
                             style={styles.btnCliente} 
                             onPress={() => this.props.navigation.navigate('LoginCliente')}
@@ -102,7 +101,7 @@ class Main extends Component{
                             onPress={() => this.props.navigation.navigate('LoginRestaurante')}
                         >
                             {this.state.fontLoaded?(
-                                <Text style={styles.textCadastra}>ENTRAR COMO RESTAURANTE </Text>
+                                <Text style={styles.textEntry}>ENTRAR COMO RESTAURANTE </Text>
                             ):(
                                 <ActivityIndicator size="large"/>
                             )}

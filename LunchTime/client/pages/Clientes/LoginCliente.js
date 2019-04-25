@@ -8,7 +8,7 @@ const apiUrl = "http://localhost:9090/client/";
 export default class Cliente extends React.Component {
 
     static navigationOptions = {
-      title: 'LunchTime',
+      title: 'Login',
     };
 
     constructor(){
@@ -66,6 +66,7 @@ export default class Cliente extends React.Component {
  
             <TouchableHighlight 
                 style={styles.btnLogin} 
+                onPress={() => this.props.navigation.navigate('HomeCliente')}
             >
                 {this.state.fontLoaded?(
                     <Text style={styles.textEntry}> Login</Text>
@@ -89,11 +90,11 @@ export default class Cliente extends React.Component {
           )}
 
             <TouchableHighlight 
-                style={styles.btnLogin} 
+                style={styles.btnCad} 
                 onPress={() => this.props.navigation.navigate('CadastrarCliente')}
             >
                 {this.state.fontLoaded?(
-                    <Text style={styles.textEntry}> Quero me Cadastrar! </Text>
+                    <Text style={styles.textCad}> Quero me Cadastrar! </Text>
                 ):(
                     <ActivityIndicator size="large"/>
                 )}

@@ -8,7 +8,7 @@ const apiUrl = "http://localhost:9090/client/";
 export default class Cliente extends React.Component {
 
     static navigationOptions = {
-      title: 'LunchTime',
+      title: 'Cadastre-se',
     };
 
     constructor(props){

@@ -9,7 +9,7 @@ export default {
     darker: '#333',
     black: '#000',
 
-    primary: '#DA552F',
+    primary: '#FF0000',
     primaryDark: Color('#DA552F').darken(0.1),
     secundary: '#fafafa',
     success: '#9DCA83',
