@@ -11,9 +11,42 @@ export default class LoginRestaurante extends Component {
     constructor(){
         super()
         this.state={
-            fontLoaded:false
+            fontLoaded:false,
+            emailRestaurante: "",
+            senhaRestaurante: "",
+            token: "",
+            user: ""
         }        
     }
+
+    login = () => {
+        fetch('http:192.168.43.238:9090/login/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                emailRestaurante: this.state.emailRestaurante,
+                senhaRestaurante: this.state.senhaRestaurante
+            })
+        }).then((responseData) => {
+            return responseData.json();
+        }).then((jsonData) => {
+            this.setState({
+                token: jsonData.token,
+                user: jsonData.user
+            });
+            console.log("Dados salvos no componente");
+            console.log(this.state)
+        }).then((resolve) => {
+            if (this.state.user) {
+                this.props.navigation.navigate('PerfilRestaurante');
+            } else {
+                this.props.navigation.navigate('Main');
+            }
+        });
+    };
   
     async componentWillMount(){
         await Font.loadAsync({
@@ -34,13 +67,13 @@ export default class LoginRestaurante extends Component {
 
                 <TextInput style={styles.input}
                     placeholder = 'E-mail Restaurante'
-                    onChangeText = {(text) => {this.emailRestaurante = text}}
+                    onChangeText = {(text) => this.setState({ emailRestaurante: text})}
                     value = {this.emailRestaurante}
                     underlineColorAndroid = 'transparent'
                 />
                 <TextInput style={styles.input}
                     placeholder = 'Senha Restaurante'
-                    onChangeText = {(text) => {this.senhaRestaurante = text}}
+                    onChangeText = {(text) => this.setState({ senhaRestaurante: text})}
                     value = {this.senhaRestaurante}
                     secureTextEntry={true}
                     password={true}
@@ -50,7 +83,7 @@ export default class LoginRestaurante extends Component {
                 
                 <TouchableHighlight 
                     style={styles.btnLogin} 
-                    onPress={() =>  this.props.navigation.navigate('PerfilRestaurante')}
+                    onPress={this.login}
                 >
                     {this.state.fontLoaded?(
                         <Text style={styles.textEntry}> Login </Text>

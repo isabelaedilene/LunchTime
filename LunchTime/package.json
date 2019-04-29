@@ -19,7 +19,8 @@
     "react-navigation": "^3.5.1",
     "sequelize": "^4.43.0",
     "prop-types": "latest",
-    "@expo/vector-icons": "latest"
+    "@expo/vector-icons": "latest",
+    "jsonwebtoken": "latest"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",

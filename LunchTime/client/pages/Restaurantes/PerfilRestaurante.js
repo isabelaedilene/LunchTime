@@ -7,6 +7,19 @@ class PerfilRestaurante extends Component {
         title: "Meu Perfil"
     };
 
+    render() {
+        return(
+            <ScrollView>
+                <View style={styles.container}>
+                    <TouchableOpacity>
+                        <Text>Tela Onde Ficará os Pedidos recebidos do Resraurante</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+        )
+    }
+
+    /*
     constructor(props){
         super(props);
         this.state = {
@@ -30,12 +43,13 @@ class PerfilRestaurante extends Component {
     }
 
     componentDidMount() {
-        this.getButton();
+        //this.getButton();
     }
 
     async getButton() {
         try {
-            let response = await fetch('http://192.168.0.16:9090/restaurant/1',);
+            console.log('Dentro do componente de perfil do restaurante');
+            let response = await fetch('http://192.168.43.248:9090/restaurant/1',);
             let responseJson = await response.json();
             console.log(responseJson);
             this.setState({
@@ -60,34 +74,11 @@ class PerfilRestaurante extends Component {
         } catch (error) {
             console.error(error);
         }
-        /*fetch('http://192.168.43.238:9090/restaurant/1', {
-            method: 'GET'
-        }).then((responseData) => {
-            return responseData.json();
-        }).then((jsonData) => {
-            console.log(jsonData);
-            this.setState({apiData: jsonData})
-            console.log(this.state.apiData)
-        }).done();
-        this.state.nomeRestaurante = null;
-        this.state.cnpjRestaurante = null;
-        this.state.telefoneRestaurante = null;
-        this.state.emailRestaurante = null;
-        this.state.senhaRestaurante = null;
-        this.state.cepRestaurante = null;
-        this.state.estadoRestaurante = null;
-        this.state.cidadeRestaurante = null;
-        this.state.bairroRestaurante = null;
-        this.state.ruaRestaurante = null;
-        this.state.numeroRestaurante = null;
-        this.state.pontoReferenciaRestaurante = null;
-        this.state.complementoRestaurante = null;
-        this.state.tipoRestaurante = null;*/
     };
 
     saveButton = () => {
         console.log(this.state);
-        fetch('http:192.168.0.16:9090/restaurant/1', {
+        fetch('http:192.168.43.248:9090/restaurant/1', {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -204,105 +195,7 @@ class PerfilRestaurante extends Component {
         )
     }
 
-    /*render() {
-        return (
-            <View style={styles.container}>
-                <ScrollView>
-                    <Text style={{padding: 10}}>Dados</Text>
-                    <View style={styles.divider}></View>
-                    <TextInput style={styles.input}
-                               placeholder = 'Nome Restaurante'
-                               onChangeText = {(text) => {this.state.nomeRestaurante = text}}
-                               value = {this.state.nomeRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'CNPJ Restaurante'
-                               onChangeText = {(text) => {this.state.cnpjRestaurante = text}}
-                               value = {this.state.cnpjRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Telefone Restaurante'
-                               onChangeText = {(text) => {this.state.telefoneRestaurante = text}}
-                               value = {this.state.telefoneRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'E-mail Restaurante'
-                               onChangeText = {(text) => {this.state.emailRestaurante = text}}
-                               value = {this.state.emailRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Senha Restaurante'
-                               onChangeText = {(text) => {this.state.senhaRestaurante = text}}
-                               value = {this.state.senhaRestaurante}
-                               secureTextEntry={true}
-                               password={true}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <Text style={{padding: 10}}>Dados de endereço</Text>
-                    <View style={styles.divider}></View>
-                    <TextInput style={styles.input}
-                               placeholder = 'CEP Restaurante'
-                               onChangeText = {(text) => {this.state.cepRestaurante = text}}
-                               value = {this.state.cepRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Estado Restaurante'
-                               onChangeText = {(text) => {this.state.estadoRestaurante = text}}
-                               value = {this.state.estadoRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Cidade Restaurante'
-                               onChangeText = {(text) => {this.state.cidadeRestaurante = text}}
-                               value = {this.state.cidadeRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Bairro Restaurante'
-                               onChangeText = {(text) => {this.state.bairroRestaurante = text}}
-                               value = {this.state.bairroRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Rua Restaurante'
-                               onChangeText = {(text) => {this.state.ruaRestaurante = text}}
-                               value = {this.state.ruaRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Número Restaurante'
-                               onChangeText = {(text) => {this.state.numeroRestaurante = text}}
-                               value = {this.state.numeroRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Ponto Referência Restaurante'
-                               onChangeText = {(text) => {this.state.pontoReferenciaRestaurante = text}}
-                               value = {this.state.pontoReferenciaRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Complemento Restaurante'
-                               onChangeText = {(text) => {this.state.complementoRestaurante = text}}
-                               value = {this.state.complementoRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <TextInput style={styles.input}
-                               placeholder = 'Nome Restaurante'
-                               onChangeText = {(text) => {this.state.tipoRestaurante = text}}
-                               value = {this.state.tipoRestaurante}
-                               underlineColorAndroid = 'transparent'
-                    />
-                    <Button title="Salvar" onPress={this.getButton.bind(this)} color="#841584"/>
-                </ScrollView>
-            </View>
-        )
-    }*/
+    */
 }
 
 export default PerfilRestaurante;

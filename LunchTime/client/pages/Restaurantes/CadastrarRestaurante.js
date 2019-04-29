@@ -31,7 +31,7 @@ class CadastrarRestaurante extends Component {
     }
 
     saveButton = () => {
-        fetch('http:192.168.0.16:9090/restaurant/', {
+        fetch('http:192.168.43.248:9090/restaurant/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -66,8 +66,8 @@ class CadastrarRestaurante extends Component {
     render() {
         const data = this.state.apiData;
         return (
-            <View style={styles.container}>
-                <ScrollView>
+            <ScrollView>
+                <View style={styles.container}>
                     <Text style={{padding: 10}}>Dados</Text>
                     <View style={styles.divider}></View>
                     <TextInput style={styles.input}
@@ -159,8 +159,8 @@ class CadastrarRestaurante extends Component {
                                underlineColorAndroid = 'transparent'
                     />
                     <Button title="Registrar" onPress={this.saveButton} color="#841584"/>
-                </ScrollView>
-            </View>
+                </View>
+            </ScrollView>
         )
     }
 }
