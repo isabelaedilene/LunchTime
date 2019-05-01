@@ -3,7 +3,7 @@ import { View, Text, TouchableHighlight, StyleSheet, ActivityIndicator} from 're
 import { styles} from '../../style';
 import {Font} from 'expo';
 
-const apiUrl = "http://localhost:9090";
+const apiUrl = "http://192.168.25.6:9090";
 
 class Main extends Component{
     static navigationOptions = {

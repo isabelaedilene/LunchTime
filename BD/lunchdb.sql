@@ -96,13 +96,13 @@ CREATE TABLE `imagempedidos` (
 -- Estrutura da tabela `imagemprodutos`
 --
 
---CREATE TABLE `imagemprodutos` (
---  `idImagemProduto` int(11) NOT NULL,
---  `idProduto_fk` int(11) NOT NULL,
---  `nomeImagemProduto` varchar(255) NOT NULL,
---  `createdAt` datetime NOT NULL,
---  `updatedAt` datetime NOT NULL
---) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `imagemprodutos` (
+    `idImagemProduto` int(11) NOT NULL,
+    `idProduto_fk` int(11) NOT NULL,
+    `nomeImagemProduto` varchar(255) NOT NULL,
+    `createdAt` datetime NOT NULL,
+    `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

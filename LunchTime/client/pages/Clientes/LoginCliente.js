@@ -3,7 +3,7 @@ import { Text, View, TextInput, TouchableHighlight, ScrollView, ActivityIndicato
 import { styles } from '../../style';
 import {Font} from 'expo';
 
-const apiUrl = "http://localhost:9090/client/";
+const apiUrl = "http://192.168.25.6:9090/client/";
 
 export default class Cliente extends React.Component {
 
@@ -14,9 +14,42 @@ export default class Cliente extends React.Component {
     constructor(){
       super()
       this.state={
-          fontLoaded:false
+          fontLoaded:false,
+          emailCliente: "",
+          senhaCliente: "",
+          token: "",
+          user: ""
       }        
   }
+
+  login = () => {
+    fetch(apiUrl+'login', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          emailCliente: this.state.emailCliente,
+          senhaCliente: this.state.senhaCliente
+        })
+    }).then((responseData) => {
+        return responseData.json();
+    }).then((jsonData) => {
+        this.setState({
+            token: jsonData.token,
+            user: jsonData.user
+        });
+        console.log("Dados salvos no componente");
+        console.log(this.state)
+    }).then((resolve) => {
+        if (this.state.user) {
+            this.props.navigation.navigate('HomeCliente');
+        } else {
+            this.props.navigation.navigate('Main');
+        }
+    });
+};
 
   async componentWillMount(){
       await Font.loadAsync({
@@ -51,13 +84,13 @@ export default class Cliente extends React.Component {
 
           <TextInput style={styles.input}
             placeholder = 'E-mail'
-            onChangeText={(text) => this.validate(text)}
+            onChangeText={(text) => this.setState({ emailCliente: text})}
             value={this.state.email}
             underlineColorAndroid = 'transparent' 
           />
           <TextInput style={styles.input}
             placeholder = 'Senha'
-            onChangeText = {(text) => {this.senhaCliente = text}}
+            onChangeText = {(text) => this.setState({ senhaCliente: text})}
             value = {this.senhaCliente}
             password={true}
             secureTextEntry={true}
@@ -66,7 +99,7 @@ export default class Cliente extends React.Component {
  
             <TouchableHighlight 
                 style={styles.btnLogin} 
-                onPress={() => this.props.navigation.navigate('HomeCliente')}
+                onPress={this.login}
             >
                 {this.state.fontLoaded?(
                     <Text style={styles.textEntry}> Login</Text>

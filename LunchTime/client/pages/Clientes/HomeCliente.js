@@ -4,7 +4,7 @@ import { styles } from '../../style';
 import {Font} from 'expo';
 
 
-const apiUrl = "http://localhost:9090/client/";
+const apiUrl = "http://192.168.25.6:9090/client/";
 
 export default class Cliente extends React.Component {
 

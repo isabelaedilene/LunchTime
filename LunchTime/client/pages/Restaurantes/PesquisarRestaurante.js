@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, TouchableHighlight, ScrollView } from 'react-native';
 import { styles } from '../../style';
 
-const apiUrl = "http://localhost:9090/restaurant/search/";
+const apiUrl = "http://192.168.25.6:9090/restaurant/search/";
 
 export default class PesquisarRestaurante extends Component {
 

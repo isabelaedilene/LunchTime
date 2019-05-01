@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {View, Button, Text, FlatList, TouchableOpacity, TextInput, TouchableHighlight, ScrollView} from 'react-native';
 import { styles } from '../../style';
 
+const apiUrl = "http://192.168.25.6:9090/restaurant/";
+
 class CadastrarRestaurante extends Component {
     static navigationOptions = {
         title: "Cadastrar"
@@ -31,7 +33,7 @@ class CadastrarRestaurante extends Component {
     }
 
     saveButton = () => {
-        fetch('http:192.168.43.248:9090/restaurant/', {
+        fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

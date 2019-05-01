@@ -1,4 +1,29 @@
 const models = require('../models');
+const jwt = require('jsonwebtoken');
+
+const passport = require('passport');
+const passportJWT = require('passport-jwt');
+const ExtractJwt  = passportJWT.ExtractJwt;
+
+const JwtStrategy = passportJWT.Strategy;
+const jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
+jwtOptions.secretOrKey = 'wowwow';
+
+const strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+    models.Clientes.findOne({id: jwt_payload.id}, function (err, user) {
+        if (err) {
+            return next(err, false);
+        }
+        if (user) {
+            next(null, user);
+        } else {
+            next(null, false);
+        }
+    })
+});
+
+passport.use(strategy);
 
 exports.get = async (req, res) => {
     models.Clientes.findAll({
@@ -16,6 +41,29 @@ exports.post = async (req, res) => {
     //res.json(user);
 };
 
+exports.login = async (req, res) => {
+    console.log("here");
+    const name = req.body.emailCliente;
+    const password = req.body.senhaCliente;
+    if (name && password) {
+        models.Clientes.findOne({
+            where: {
+                emailCliente: name
+            }
+        }).then(function (user) {
+            if (!user) {
+                res.status(401).json({ msg: "Usuario nao encontrado"});
+            }
+            if (user.senhaCliente === password) {
+                let payload = { id: user.id };
+                let token = jwt.sign(payload, jwtOptions.secretOrKey);
+                res.json({ msg: 'ok', token: token, user: user})
+            } else {
+                res.status(401).json({ msg: "Senha incorreta"});
+            }
+        })
+    }
+};
 
 exports.put = async (req, res) => {
     const user = await models.Clientes.update({

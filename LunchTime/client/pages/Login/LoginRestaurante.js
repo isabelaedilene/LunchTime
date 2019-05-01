@@ -3,6 +3,8 @@ import {Button, ScrollView, Text, TouchableHighlight, TextInput, View,  Activity
 import {styles} from "../../style";
 import {Font} from 'expo';
 
+const apiUrl = "http://192.168.25.6:9090/login/";
+
 export default class LoginRestaurante extends Component {
     static navigationOptions = {
         title: "Login"
@@ -20,7 +22,7 @@ export default class LoginRestaurante extends Component {
     }
 
     login = () => {
-        fetch('http:192.168.43.238:9090/login/', {
+        fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
