@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements';
 
+const apiUrl = "http://192.168.0.13:9090/restaurant/";
+
 export default class DadosRestaurante extends Component {
     static navigationOptions = {
         title: "Dados do Restaurante"
@@ -16,13 +18,28 @@ export default class DadosRestaurante extends Component {
 
     componentDidMount() {
         const { navigation } = this.props;
-        const user = navigation.getParam('user', 'Erro2');
-        this.setState({user: user.user});
+        const userId = navigation.getParam('userId', 'Erro2');
+        this.getRestauranteInfo(userId);
         console.log("Dentro do componente Dados");
-        console.log(this.state);
         console.log("variavel user");
-        console.log(user.user);
+        console.log(userId);
+        console.log("State");
+        console.log(this.state);
     }
+
+    getRestauranteInfo = async (id) => {
+        try {
+            let response = await fetch(apiUrl + id);
+            let responseJson = await response.json();
+            this.setState({
+                user: responseJson
+            });
+            console.log("State dentro do método");
+            console.log(this.state);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     render() {
 

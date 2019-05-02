@@ -55,12 +55,12 @@ class PerfilRestaurante extends Component {
     profile = () => {
         const { navigation } = this.props;
         const user = navigation.getParam('user', 'Erro');
-        this.props.navigation.navigate('DadosRestaurante', { user: user });
-    }
+        console.log("Dentro do perfil");
+        console.log(user.user.idRestaurante);
+        this.props.navigation.navigate('DadosRestaurante', { userId: user.user.idRestaurante });
+    };
 
     componentDidMount() {
-        console.log("User dentro de outro component");
-        console.log(this.state.user);
         const navigation = this.props.navigation.setParams({ profile: this.profile })
     }
 
