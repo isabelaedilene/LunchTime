@@ -20,8 +20,6 @@ export default class DadosRestaurante extends Component {
         const { navigation } = this.props;
         const userId = navigation.getParam('userId', 'Erro2');
         this.getRestauranteInfo(userId);
-        console.log("Dentro do componente Dados");
-        console.log("variavel user");
         console.log(userId);
         console.log("State");
         console.log(this.state);
@@ -41,40 +39,49 @@ export default class DadosRestaurante extends Component {
         }
     };
 
+    deleteRestaurante = () => {
+        fetch(apiUrl + this.state.user.idRestaurante, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((resolve) => {
+            this.props.navigation.navigate('Main');
+        })
+    };
+
     render() {
 
         return(
             <ScrollView>
-                {/*<Card
-                    title={this.state.user.user.nomeRestaurante}
+                <Card
+                    title={this.state.user.nomeRestaurante}
                     image={{ uri: 'https://1.kekantoimg.com/H-2ZscgOpGnwVlJe6WjrU9f9jiY=/fit-in/600x600/s3.amazonaws.com/kekanto_pics/pics/121/21121.jpg' }}
                 >
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.user.cnpjRestaurante}
+                        {this.state.user.cnpjRestaurante}
                     </Text>
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.user.cidadeRestaurante}
+                        {this.state.user.cidadeRestaurante}
                     </Text>
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.user.telefoneRestaurante}
+                        {this.state.user.telefoneRestaurante}
                     </Text>
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.user.tipoRestaurante}
+                        {this.state.user.tipoRestaurante}
                     </Text>
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.user.emailRestaurante}
+                        {this.state.user.emailRestaurante}
                     </Text>
                     <Button
-                        icon={<Icon name="delete_outline"/>}
-                        backgroundColor="#f46242"
+                        icon={<Icon name="warning"/>}
+                        containerStyle={{ backgroundColor: '#e84c09' }}
                         buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                         title="Delete sua Conta"
+                        onPress={this.deleteRestaurante}
                     />
-
-                </Card>*/}
-                <Text>
-                    Teste
-                </Text>
+                </Card>
             </ScrollView>
         )
     }

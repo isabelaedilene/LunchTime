@@ -77,6 +77,9 @@ exports.put = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
-    let id = req.params.id;
-    res.status(200).send(`Requisição recebida com sucesso! ${id}`);
+    models.Restaurantes.destroy({
+        where: {
+            idRestaurante: req.params.id
+        }
+    }).then((result) => res.json(result))
 };
