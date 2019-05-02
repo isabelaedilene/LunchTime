@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {View, Button, Text, FlatList, TouchableOpacity, TextInput, TouchableHighlight, ScrollView} from 'react-native';
 import { styles } from '../../style';
 
-const apiUrl = "http://192.168.25.6:9090/restaurant/";
+const apiUrl = "http://192.168.0.13:9090/restaurant/";
 
 class CadastrarRestaurante extends Component {
     static navigationOptions = {

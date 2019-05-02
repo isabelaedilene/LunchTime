@@ -7,6 +7,7 @@ import LoginRestaurante from './pages/Login/LoginRestaurante';
 import PerfilRestaurante from './pages/Restaurantes/PerfilRestaurante';
 import LoginCliente from './pages/Clientes/LoginCliente';
 import HomeCliente from './pages/Clientes/HomeCliente';
+import DadosRestaurante from './pages/Restaurantes/DadosRestaurante'
 
 
 import { colors } from './style';
@@ -22,6 +23,7 @@ const Routes = createAppContainer(
             LoginRestaurante: {screen: LoginRestaurante},
             PerfilRestaurante: {screen: PerfilRestaurante},
             HomeCliente: {screen: HomeCliente},
+            DadosRestaurante: {screen: DadosRestaurante}
         },
         {
             defaultNavigationOptions: {

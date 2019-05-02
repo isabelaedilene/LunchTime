@@ -3,7 +3,7 @@ import {Button, ScrollView, Text, TouchableHighlight, TextInput, View,  Activity
 import {styles} from "../../style";
 import {Font} from 'expo';
 
-const apiUrl = "http://192.168.25.6:9090/login/";
+const apiUrl = "http://192.168.0.13:9090/login/";
 
 export default class LoginRestaurante extends Component {
     static navigationOptions = {
@@ -43,7 +43,7 @@ export default class LoginRestaurante extends Component {
             console.log(this.state)
         }).then((resolve) => {
             if (this.state.user) {
-                this.props.navigation.navigate('PerfilRestaurante');
+                this.props.navigation.navigate('PerfilRestaurante', {user: this.state});
             } else {
                 this.props.navigation.navigate('Main');
             }
