@@ -75,8 +75,8 @@ export default class DadosRestaurante extends Component {
                         {this.state.user.emailRestaurante}
                     </Text>
                     <Button
+                        buttonStyle={{backgroundColor: 'red'}}
                         icon={<Icon name="warning"/>}
-                        containerStyle={{ backgroundColor: '#e84c09' }}
                         buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                         title="Delete sua Conta"
                         onPress={this.deleteRestaurante}
