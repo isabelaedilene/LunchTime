@@ -35,10 +35,13 @@ exports.get = async (req, res) => {
     });
 };
 
+exports.getById = async (req, res, next) => {
+    models.Clientes.findByPk(req.params.id).then((result) => res.json(result))
+};
+
 
 exports.post = async (req, res) => {
-    const user = await models.Clientes.create(req.body);
-    //res.json(user);
+    models.Clientes.create(req.body).then((result) => res.json(result))
 };
 
 exports.login = async (req, res) => {

@@ -3,7 +3,7 @@ import { Text, View, TextInput, TouchableHighlight, ScrollView, ActivityIndicato
 import { styles } from '../../style';
 import {Font} from 'expo';
 
-const apiUrl = "http://192.168.25.6:9090/client/";
+const apiUrl = "http://192.168.1.23:9090/client/";
 
 export default class Cliente extends React.Component {
 
@@ -44,7 +44,7 @@ export default class Cliente extends React.Component {
         console.log(this.state)
     }).then((resolve) => {
         if (this.state.user) {
-            this.props.navigation.navigate('HomeCliente');
+            this.props.navigation.navigate('HomeCliente', {user: this.state});
         } else {
             this.props.navigation.navigate('Main');
         }
