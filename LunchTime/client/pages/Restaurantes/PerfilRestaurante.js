@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
 import { Card, ListItem, Divider, Icon } from 'react-native-elements';
+import serverUrl from '../../../connection';
 
 const pedidos = [
     {

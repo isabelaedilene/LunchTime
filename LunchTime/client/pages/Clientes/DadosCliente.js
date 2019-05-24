@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements';
+import serverUrl from '../../../connection';
 
-const apiUrl = "http://192.168.1.23:9090/client/";
+const apiUrl = serverUrl.SERVER_URL+"/client/";
 
 export default class DadosRestaurante extends Component {
     static navigationOptions = {

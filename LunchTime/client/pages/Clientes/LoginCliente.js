@@ -2,8 +2,9 @@ import React from 'react';
 import { Text, View, TextInput, TouchableHighlight, ScrollView, ActivityIndicator } from 'react-native';
 import { styles } from '../../style';
 import {Font} from 'expo';
+import serverUrl from '../../../connection';
 
-const apiUrl = "http://192.168.1.23:9090/client/";
+const apiUrl = serverUrl.SERVER_URL+"/client/";
 
 export default class Cliente extends React.Component {
 

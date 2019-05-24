@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet, ActivityIndicator} from 'react-native';
 import { styles} from '../../style';
 import {Font} from 'expo';
-
-const apiUrl = "http://192.168.1.23:9090";
+import serverUrl from '../../../connection';
 
 class Main extends Component{
     static navigationOptions = {
@@ -36,7 +35,7 @@ class Main extends Component{
 
     async loadClients() {
         try {
-            let response = await fetch(apiUrl+"/client/");
+            let response = await fetch(serverUrl.SERVER_URL+"/client/");
             let responseJson = [];
             try {
                 responseJson = await response.json();
@@ -53,7 +52,7 @@ class Main extends Component{
 
     async loadRestaurants() {
         try {
-            let response = await fetch(apiUrl+"/restaurant/");
+            let response = await fetch(serverUrl.SERVER_URL+"/restaurant/");
             let responseJson = [];
             try {
                 responseJson = await response.json();

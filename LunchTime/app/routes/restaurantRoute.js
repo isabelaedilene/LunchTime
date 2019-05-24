@@ -3,7 +3,7 @@ const router = express.Router();
 const controller = require('../controllers/restaurantController');
 
 router.get('/', controller.get);
-router.get('/:nomeRestaurante/:tipoRestaurante', controller.search);
+router.post('/search', controller.search);
 router.get('/:id', controller.getById);
 router.post('/', controller.post);
 router.put('/:id', controller.put);

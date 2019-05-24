@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {Button, ScrollView, Text, TouchableHighlight, TextInput, View,  ActivityIndicator} from 'react-native';
 import {styles} from "../../style";
 import {Font} from 'expo';
+import serverUrl from '../../../connection';
 
-const apiUrl = "http://192.168.0.13:9090/login/";
+const apiUrl = serverUrl.SERVER_URL+"/login/";
 
 export default class LoginRestaurante extends Component {
     static navigationOptions = {

@@ -1,4 +1,6 @@
+const Sequelize = require('sequelize');
 const models = require('../models');
+const Op = Sequelize.Op;
 
 exports.get = async (req, res, next) => {
     models.Restaurantes.findAll({
@@ -15,31 +17,31 @@ exports.getById = async (req, res, next) => {
 };
 
 exports.search = async (req, res) => {
-    const user = null; 
-    if(req.params.nomeRestaurante !== null && req.params.tipoRestaurante !== null){
+    var user = null; 
+    if(req.body.nomeRestaurante !== '' && req.body.tipoRestaurante !== ''){
     user = await models.Restaurantes.findAll({
         where: {
           nomeRestaurante: {
-              [Op.like]: '%'+req.params.nomeRestaurante+'%'
+              [Op.like]: '%'+req.body.nomeRestaurante+'%'
             },
             tipoRestaurante: {
-                [Op.like]: '%'+req.params.tipoRestaurante+'%'
+                [Op.like]: '%'+req.body.tipoRestaurante+'%'
             }
         }
       });
-    }else if(req.params.nomeRestaurante !== null && req.params.tipoRestaurante == null){
+    }else if(req.body.nomeRestaurante !== '' && req.body.tipoRestaurante == ''){
         user = await models.Restaurantes.findAll({
             where: {
               nomeRestaurante: {
-                  [Op.like]: '%'+req.params.nomeRestaurante+'%'
+                  [Op.like]: '%'+req.body.nomeRestaurante+'%'
                 }
             }
           });
-    }else if(req.params.nomeRestaurante == null && req.params.tipoRestaurante !== null){
+    }else if(req.body.nomeRestaurante == '' && req.body.tipoRestaurante !== ''){
         user = await models.Restaurantes.findAll({
             where: {
                 tipoRestaurante: {
-                    [Op.like]: '%'+req.params.tipoRestaurante+'%'
+                    [Op.like]: '%'+req.body.tipoRestaurante+'%'
                 }
             }
           });

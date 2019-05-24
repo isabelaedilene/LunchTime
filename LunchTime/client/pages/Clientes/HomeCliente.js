@@ -3,10 +3,10 @@ import { Text, View, TextInput, TouchableHighlight, TouchableOpacity, Image, Scr
 import { Card, ListItem, Divider, Icon } from 'react-native-elements';
 import { styles } from '../../style';
 import { Font } from 'expo';
+import serverUrl from '../../../connection';
 
-
-const apiUrl = "http://192.168.1.23:9090/client/";
-const apiUrl_Restaurante = "http://192.168.1.23:9090/restaurant/";
+const apiUrl = serverUrl.SERVER_URL+"/client/";
+const apiUrl_Restaurante = serverUrl.SERVER_URL+"/restaurant/";
 
 export default class Cliente extends React.Component {
 
@@ -84,9 +84,14 @@ export default class Cliente extends React.Component {
         });
 
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                {dataDisplay}
-            </ScrollView>
+            <View style={styles.container}>
+                <TouchableHighlight style={styles.btnCad} onPress={() => this.props.navigation.navigate('PesquisarRestaurante')}>
+                    <Text style={styles.textStyle}>Pesquisar</Text>
+                </TouchableHighlight>
+                <ScrollView contentContainerStyle={styles.container}>
+                    {dataDisplay}
+                </ScrollView>
+            </View>
         );
     }
 }
