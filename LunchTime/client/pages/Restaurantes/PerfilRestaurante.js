@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Image, TouchableHighlight } from 'react-native';
 import { Card, ListItem, Divider, Icon } from 'react-native-elements';
 import serverUrl from '../../../connection';
+import { styles } from '../../style';
 
 const pedidos = [
     {
@@ -60,6 +61,14 @@ class PerfilRestaurante extends Component {
         console.log(user.user.idRestaurante);
         this.props.navigation.navigate('DadosRestaurante', { userId: user.user.idRestaurante });
     };
+	
+	productReg = () => {
+        const { navigation } = this.props;
+        const user = navigation.getParam('user', 'Erro');
+        console.log("Dentro do perfil");
+        console.log(user.user.idRestaurante);
+        this.props.navigation.navigate('CadastrarProduto', { userId: user.user.idRestaurante });
+    };
 
     componentDidMount() {
         const navigation = this.props.navigation.setParams({ profile: this.profile })
@@ -68,6 +77,9 @@ class PerfilRestaurante extends Component {
     render() {
         return(
             <ScrollView>
+			<TouchableHighlight style={styles.btnCad} onPress={this.productReg}>
+                    <Text style={styles.textStyle}>Cadastrar Produto</Text>
+                </TouchableHighlight>
                 <Card title="Novos Pedidos" containerStyle={{ backgroundColor: '#1cba0b' }}>
                     {
                         pedidos.map((u, i) => {

@@ -52,7 +52,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const index = require('./app/routes/index');
 const restaurantRoute = require('./app/routes/restaurantRoute');
 const clientRoute = require('./app/routes/clientRoute');
-
+const productRoute = require('./app/routes/productRoute');
 
 
 const getUser = async obj => {
@@ -90,6 +90,7 @@ app.post('/login', async function (req, res, next) {
 app.use('/', index);
 app.use('/restaurant', restaurantRoute);
 app.use('/client', clientRoute);
+app.use('/product', productRoute);
 
 // Server funcionando vai exibir essa mensagem no console, porta 9090
 var server = app.listen(9090, function(){

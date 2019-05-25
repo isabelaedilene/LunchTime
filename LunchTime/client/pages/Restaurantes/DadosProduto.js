@@ -1,0 +1,92 @@
+import React, { Component } from 'react';
+import { Text, ScrollView } from 'react-native';
+import { Card, Button, Icon } from 'react-native-elements';
+import serverUrl from '../../../connection';
+
+const apiUrl = serverUrl.SERVER_URL+"/restaurant/";
+
+export default class DadosProduto extends Component {
+    static navigationOptions = {
+        title: "Dados do Produto"
+    };
+
+    constructor(props) {
+        super(props);
+        this.state={
+            user: {}
+        }
+    }
+
+    componentDidMount() {
+        const { navigation } = this.props;
+        const userId = navigation.getParam('userId', 'Erro2');
+        this.getProdutoInfo(userId);
+        console.log(userId);
+        console.log("State");
+        console.log(this.state);
+    }
+
+    getProdutoInfo = async (id) => {
+        try {
+            let response = await fetch(apiUrl + id);
+            let responseJson = await response.json();
+            this.setState({
+                user: responseJson
+            });
+            console.log("State dentro do método");
+            console.log(this.state);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    deleteProduto = () => {
+        fetch(apiUrl + this.state.user.idProduto, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((resolve) => {
+            this.props.navigation.navigate('Main');
+        })
+    };
+
+    render() {
+
+        return(
+            <ScrollView>
+                <Card
+                    title={this.state.user.nomeProduto}
+                    image={{ uri: 'https://1.kekantoimg.com/H-2ZscgOpGnwVlJe6WjrU9f9jiY=/fit-in/600x600/s3.amazonaws.com/kekanto_pics/pics/121/21121.jpg' }}
+                >
+                    <Text style={{ marginBottom: 10 }}>
+                        {this.state.user.ingredientesProduto}
+                    </Text>
+                    <Text style={{ marginBottom: 10 }}>
+                        {this.state.user.valorProduto}
+                    </Text>
+                    <Text style={{ marginBottom: 10 }}>
+                        {this.state.user.valorPromocaoProduto}
+                    </Text>
+                    <Text style={{ marginBottom: 10 }}>
+                        {this.state.user.tempoPreparo}
+                    </Text>
+                    <Text style={{ marginBottom: 10 }}>
+                        {this.state.user.dataInicioPromocao}
+                    </Text>
+					<Text style={{ marginBottom: 10 }}>
+                        {this.state.user.dataFimPromocao}
+                    </Text>
+                    <Button
+                        buttonStyle={{backgroundColor: 'red'}}
+                        icon={<Icon name="warning"/>}
+                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                        title="Delete esse produto"
+                        onPress={this.deleteRestaurante}
+                    />
+                </Card>
+            </ScrollView>
+        )
+    }
+}

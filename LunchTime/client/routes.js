@@ -9,6 +9,8 @@ import LoginCliente from './pages/Clientes/LoginCliente';
 import HomeCliente from './pages/Clientes/HomeCliente';
 import DadosRestaurante from './pages/Restaurantes/DadosRestaurante'
 import DadosCliente from './pages/Clientes/DadosCliente'
+import CadastrarProduto from './pages/Restaurantes/CadastrarProduto'
+import DadosProduto from './pages/Restaurantes/DadosProduto'
 
 
 import { colors } from './style';
@@ -25,7 +27,9 @@ const Routes = createAppContainer(
             PerfilRestaurante: {screen: PerfilRestaurante},
             HomeCliente: {screen: HomeCliente},
             DadosRestaurante: {screen: DadosRestaurante},
-            DadosCliente: {screen: DadosCliente}
+            DadosCliente: {screen: DadosCliente},
+			CadastrarProduto: {screen: CadastrarProduto},
+            DadosProduto: {screen: DadosProduto}
         },
         {
             defaultNavigationOptions: {
