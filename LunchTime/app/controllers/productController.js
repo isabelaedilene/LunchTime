@@ -3,7 +3,7 @@ const models = require('../models');
 const Op = Sequelize.Op;
 
 exports.get = async (req, res, next) => {
-    models.Produtos.findAllfindAll({
+    models.Produtos.findAll({
             where: {
               idRestaurante_fk: req.params.idRestaurante
             }

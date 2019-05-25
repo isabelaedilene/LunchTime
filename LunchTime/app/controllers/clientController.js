@@ -79,9 +79,9 @@ exports.put = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-    const user = await models.Clientes.destroy({
+    models.Restaurantes.destroy({
         where: {
-            idCliente: req.params.codigo
+            idCliente: req.params.id
         }
-      });
+    }).then((result) => res.json(result))
 };

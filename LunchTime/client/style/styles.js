@@ -11,6 +11,11 @@ export default {
       marginBottom: 10,
       width: '90%',
     },
+    dividerProduto: {
+      height: 2,
+      backgroundColor: '#CCCCCC',
+      marginBottom: 10,
+    },
     input: {
       textAlign: 'center',
       height: 55,
@@ -138,6 +143,13 @@ export default {
       backgroundColor: '#E4E4E6',
       marginBottom: 10,
       width: '90%',
+      borderRadius: 5,
+      flexDirection: 'row',
+    },
+
+    cardProduto:{      
+      backgroundColor: '#E4E4E6',
+      marginBottom: 10,
       borderRadius: 5,
       flexDirection: 'row',
     },

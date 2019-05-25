@@ -11,7 +11,7 @@ import DadosRestaurante from './pages/Restaurantes/DadosRestaurante'
 import DadosCliente from './pages/Clientes/DadosCliente'
 import CadastrarProduto from './pages/Restaurantes/CadastrarProduto'
 import DadosProduto from './pages/Restaurantes/DadosProduto'
-
+import PaginaRestaurante from './pages/Restaurantes/PaginaRestaurante'
 
 import { colors } from './style';
 
@@ -29,7 +29,8 @@ const Routes = createAppContainer(
             DadosRestaurante: {screen: DadosRestaurante},
             DadosCliente: {screen: DadosCliente},
 			CadastrarProduto: {screen: CadastrarProduto},
-            DadosProduto: {screen: DadosProduto}
+            DadosProduto: {screen: DadosProduto},
+            PaginaRestaurante: {screen: PaginaRestaurante}
         },
         {
             defaultNavigationOptions: {

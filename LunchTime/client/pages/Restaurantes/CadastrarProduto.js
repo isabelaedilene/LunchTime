@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import {View, Button, Text, FlatList, TouchableOpacity, TextInput, TouchableHighlight, ScrollView} from 'react-native';
+import { View, Button, Text, FlatList, TouchableOpacity, TextInput, TouchableHighlight, ScrollView } from 'react-native';
 import { styles } from '../../style';
 import serverUrl from '../../../connection';
 
-const apiUrl = serverUrl.SERVER_URL+"/product/";
+const apiUrl = serverUrl.SERVER_URL + "/product/";
 
 class CadastrarProduto extends Component {
     static navigationOptions = {
         title: "Cadastrar"
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             apiData: [],
@@ -23,12 +23,12 @@ class CadastrarProduto extends Component {
             dataInicioPromocao: '',
             dataFimPromocao: '',
             idRestaurante_fk: '',
-        };	
+        };
     }
-	componentDidMount() {
+    componentDidMount() {
         const { navigation } = this.props;
-        const userId = navigation.getParam('userId', 'Erro2');
-        this.setState({idRestaurante_fk: userId});
+        const user = navigation.getParam('user', 'Erro2');
+        this.setState({ idRestaurante_fk: user.user.idRestaurante });
     }
 
     saveButton = () => {
@@ -51,10 +51,11 @@ class CadastrarProduto extends Component {
         }).then((responseData) => {
             return responseData.json();
         }).then((jsonData) => {
-            this.setState({rawData: jsonData});
+            this.setState({ rawData: jsonData });
             console.log(this.state.rawData)
         }).then((resolve) => {
-            this.props.navigation.navigate('LoginRestaurante');
+            const user = this.props.navigation.getParam('user', 'Erro2');
+            this.props.navigation.navigate('PerfilRestaurante', { user: user });
         });
     };
 
@@ -63,52 +64,52 @@ class CadastrarProduto extends Component {
         return (
             <ScrollView>
                 <View style={styles.container}>
-                    <Text style={{padding: 10}}>Dados</Text>
+                    <Text style={{ padding: 10 }}>Dados</Text>
                     <View style={styles.divider}></View>
                     <TextInput style={styles.input}
-                               placeholder = 'Nome Produto'
-                               onChangeText = {(text) => this.setState({nomeProduto: text})}
-                               value = {this.nomeProduto}
-                               underlineColorAndroid = 'transparent'
+                        placeholder='Nome Produto'
+                        onChangeText={(text) => this.setState({ nomeProduto: text })}
+                        value={this.nomeProduto}
+                        underlineColorAndroid='transparent'
                     />
                     <TextInput style={styles.input}
-                               placeholder = 'Ingredientes Produto'
-                               onChangeText = {(text) => this.setState({ingredientesProduto: text})}
-                               value = {this.ingredientesProduto}
-                               underlineColorAndroid = 'transparent'
+                        placeholder='Ingredientes Produto'
+                        onChangeText={(text) => this.setState({ ingredientesProduto: text })}
+                        value={this.ingredientesProduto}
+                        underlineColorAndroid='transparent'
                     />
                     <TextInput style={styles.input}
-                               placeholder = 'Valor Produto'
-                               onChangeText = {(text) => this.setState({valorProduto: text})}
-                               value = {this.valorProduto}
-                               underlineColorAndroid = 'transparent'
+                        placeholder='Valor Produto'
+                        onChangeText={(text) => this.setState({ valorProduto: text })}
+                        value={this.valorProduto}
+                        underlineColorAndroid='transparent'
                     />
                     <TextInput style={styles.input}
-                               placeholder = 'Valor Promoção Produto'
-                               onChangeText = {(text) => this.setState({valorPromocaoProduto: text})}
-                               value = {this.valorPromocaoProduto}
-                               underlineColorAndroid = 'transparent'
+                        placeholder='Valor Promoção Produto'
+                        onChangeText={(text) => this.setState({ valorPromocaoProduto: text })}
+                        value={this.valorPromocaoProduto}
+                        underlineColorAndroid='transparent'
                     />
                     <TextInput style={styles.input}
-                               placeholder = 'Tempo Preparo'
-                               onChangeText = {(text) => this.setState({tempoPreparo: text})}
-                               value = {this.tempoPreparo}
-                               underlineColorAndroid = 'transparent'
+                        placeholder='Tempo Preparo'
+                        onChangeText={(text) => this.setState({ tempoPreparo: text })}
+                        value={this.tempoPreparo}
+                        underlineColorAndroid='transparent'
                     />
                     <TextInput style={styles.input}
-                               placeholder = 'Data Início Promocao'
-                               onChangeText = {(text) => this.setState({dataInicioPromocao: text})}
-                               value = {this.dataInicioPromocao}
-                               underlineColorAndroid = 'transparent'
+                        placeholder='Data Início Promocao'
+                        onChangeText={(text) => this.setState({ dataInicioPromocao: text })}
+                        value={this.dataInicioPromocao}
+                        underlineColorAndroid='transparent'
                     />
-					<TextInput style={styles.input}
-                               placeholder = 'Data Fim Promocao'
-                               onChangeText = {(text) => this.setState({dataFimPromocao: text})}
-                               value = {this.dataFimPromocao}
-                               underlineColorAndroid = 'transparent'
+                    <TextInput style={styles.input}
+                        placeholder='Data Fim Promocao'
+                        onChangeText={(text) => this.setState({ dataFimPromocao: text })}
+                        value={this.dataFimPromocao}
+                        underlineColorAndroid='transparent'
                     />
-                    
-                    <Button title="Registrar" onPress={this.saveButton} color="#841584"/>
+
+                    <Button title="Registrar" onPress={this.saveButton} color="#841584" />
                 </View>
             </ScrollView>
         )

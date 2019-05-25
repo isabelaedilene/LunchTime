@@ -40,6 +40,18 @@ export default class DadosRestaurante extends Component {
         }
     };
 
+    deleteCliente = () => {
+        fetch(apiUrl + this.state.user.idCliente, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((resolve) => {
+            this.props.navigation.navigate('Main');
+        })
+    };
+
     render() {
 
         return(
@@ -62,6 +74,7 @@ export default class DadosRestaurante extends Component {
                         icon={<Icon name="warning"/>}
                         buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                         title="Delete sua Conta"
+                        onPress={this.deleteCliente}
                     />
                 </Card>
             </ScrollView>

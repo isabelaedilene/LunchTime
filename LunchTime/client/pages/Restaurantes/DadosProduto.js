@@ -3,7 +3,7 @@ import { Text, ScrollView } from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements';
 import serverUrl from '../../../connection';
 
-const apiUrl = serverUrl.SERVER_URL+"/restaurant/";
+const apiUrl = serverUrl.SERVER_URL + "/product/";
 
 export default class DadosProduto extends Component {
     static navigationOptions = {
@@ -12,7 +12,7 @@ export default class DadosProduto extends Component {
 
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             user: {}
         }
     }
@@ -54,36 +54,36 @@ export default class DadosProduto extends Component {
 
     render() {
 
-        return(
+        return (
             <ScrollView>
                 <Card
                     title={this.state.user.nomeProduto}
-                    image={{ uri: 'https://1.kekantoimg.com/H-2ZscgOpGnwVlJe6WjrU9f9jiY=/fit-in/600x600/s3.amazonaws.com/kekanto_pics/pics/121/21121.jpg' }}
+                    image={{ uri: 'https://media-cdn.tripadvisor.com/media/photo-s/0c/b2/ee/a1/pizza-frango-catupiry.jpg' }}
                 >
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.ingredientesProduto}
+                        Ingredientes: {this.state.user.ingredientesProduto}
                     </Text>
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.valorProduto}
+                        Preço: R$ {this.state.user.valorProduto}
                     </Text>
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.valorPromocaoProduto}
+                        Preço Promocional: R$ {this.state.user.valorPromocaoProduto}
                     </Text>
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.tempoPreparo}
+                        Tempo de Preparo: {this.state.user.tempoPreparo}
                     </Text>
                     <Text style={{ marginBottom: 10 }}>
-                        {this.state.user.dataInicioPromocao}
+                        Data de Inicio da Promoção: {this.state.user.dataInicioPromocao}
                     </Text>
-					<Text style={{ marginBottom: 10 }}>
-                        {this.state.user.dataFimPromocao}
+                    <Text style={{ marginBottom: 10 }}>
+                        Data de Termino da Promoção: {this.state.user.dataFimPromocao}
                     </Text>
                     <Button
-                        buttonStyle={{backgroundColor: 'red'}}
-                        icon={<Icon name="warning"/>}
-                        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                        buttonStyle={{ backgroundColor: 'red' }}
+                        icon={<Icon name="warning" />}
+                        buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
                         title="Delete esse produto"
-                        onPress={this.deleteRestaurante}
+                        onPress={this.deleteProduto}
                     />
                 </Card>
             </ScrollView>

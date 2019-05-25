@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, ScrollView, Image, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image, TouchableHighlight } from 'react-native';
 import { Card, ListItem, Divider, Icon } from 'react-native-elements';
 import serverUrl from '../../../connection';
 import { styles } from '../../style';
+
+const apiUrl = serverUrl.SERVER_URL + "/product/";
 
 const pedidos = [
     {
@@ -34,7 +36,7 @@ const pedidos = [
 
 class PerfilRestaurante extends Component {
 
-    static navigationOptions = ({navigation}) => {
+    static navigationOptions = ({ navigation }) => {
         return {
             title: "Meu Perfil",
             headerRight: (
@@ -49,7 +51,8 @@ class PerfilRestaurante extends Component {
 
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
+            produtosInfo: [],
             user: ""
         }
     }
@@ -61,25 +64,68 @@ class PerfilRestaurante extends Component {
         console.log(user.user.idRestaurante);
         this.props.navigation.navigate('DadosRestaurante', { userId: user.user.idRestaurante });
     };
-	
-	productReg = () => {
+
+    productReg = () => {
         const { navigation } = this.props;
         const user = navigation.getParam('user', 'Erro');
         console.log("Dentro do perfil");
         console.log(user.user.idRestaurante);
-        this.props.navigation.navigate('CadastrarProduto', { userId: user.user.idRestaurante });
+        this.props.navigation.navigate('CadastrarProduto', { user: user });
     };
+
+    loadProdutos = () => {
+        const user = this.props.navigation.getParam('user', 'Erro2');
+        fetch(apiUrl + "list/" + user.user.idRestaurante, {
+            method: 'GET'
+        }).then((responseData) => {
+            return responseData.json();
+        }).then((jsonData) => {
+            console.log(jsonData);
+            this.setState({ produtosInfo: jsonData.produtos })
+            console.log(this.state.produtosInfo)
+        }).done();
+    }
+
+    async componentWillMount() {
+        this.loadProdutos();
+    }
 
     componentDidMount() {
         const navigation = this.props.navigation.setParams({ profile: this.profile })
     }
 
     render() {
-        return(
+        const data = this.state.produtosInfo;
+        let dataDisplay = data.map((responseJson) => {
+            return (
+                <View key={responseJson.idProduto}>
+                    <View style={styles.dividerProduto}></View>
+                    <TouchableOpacity style={styles.cardProduto} onPress={() => this.props.navigation.navigate('DadosProduto', { userId: responseJson.idProduto })}>
+                        <View>
+                            <Image style={styles.imgCard} source={{ uri: 'https://media-cdn.tripadvisor.com/media/photo-s/0c/b2/ee/a1/pizza-frango-catupiry.jpg' }} />
+                        </View>
+                        <View>
+                            <Text style={styles.nameRest}> {responseJson.nomeProduto} </Text>
+                            <Text style={styles.catRest}> Preço: R$ {responseJson.valorProduto} </Text>
+                            <Text style={styles.catRest}> Tempo de </Text>
+                            <Text style={styles.catRest}> Preparo: {responseJson.tempoPreparo} </Text>
+                        </View>
+                    </TouchableOpacity>
+
+                </View>
+            )
+        });
+
+        return (
             <ScrollView>
-			<TouchableHighlight style={styles.btnCad} onPress={this.productReg}>
-                    <Text style={styles.textStyle}>Cadastrar Produto</Text>
-                </TouchableHighlight>
+                <View style={styles.container}>
+                    <TouchableHighlight style={styles.btnLogin} onPress={this.productReg}>
+                        <Text style={styles.textStyle}>Cadastrar Produto</Text>
+                    </TouchableHighlight>
+                </View>
+                <Card title="Produtos">
+                        {dataDisplay}
+                    </Card>
                 <Card title="Novos Pedidos" containerStyle={{ backgroundColor: '#1cba0b' }}>
                     {
                         pedidos.map((u, i) => {
@@ -90,7 +136,7 @@ class PerfilRestaurante extends Component {
                                             title: u.nomeCliente,
                                             source: { uri: u.imagemPedido },
                                         }}
-                                        linearGradientProps={{colors: ['#16e246', '#206831']}}
+                                        linearGradientProps={{ colors: ['#16e246', '#206831'] }}
                                         title={u.nomeCliente}
                                         subtitle={u.nomePrato}
                                         chevron
@@ -98,13 +144,13 @@ class PerfilRestaurante extends Component {
                                     <View style={{
                                         borderBottomColor: 'black',
                                         borderBottomWidth: 1,
-                                    }}/>
+                                    }} />
                                 </ScrollView>
                             )
                         })
                     }
                 </Card>
-                <Divider style={{ backgroundColor: 'orange' }}/>
+                <Divider style={{ backgroundColor: 'orange' }} />
                 <Card title="Pedidos sendo preparados" containerStyle={{ backgroundColor: '#f4e807' }}>
                     {
                         pedidos.map((u, i) => {
@@ -115,7 +161,7 @@ class PerfilRestaurante extends Component {
                                             title: u.nomeCliente,
                                             source: { uri: u.imagemPedido },
                                         }}
-                                        linearGradientProps={{colors: ['#f4e807', '#f2ea54']}}
+                                        linearGradientProps={{ colors: ['#f4e807', '#f2ea54'] }}
                                         title={u.nomeCliente}
                                         subtitle={u.nomePrato}
                                         chevron
@@ -123,7 +169,7 @@ class PerfilRestaurante extends Component {
                                     <View style={{
                                         borderBottomColor: 'black',
                                         borderBottomWidth: 1,
-                                    }}/>
+                                    }} />
                                 </ScrollView>
                             )
                         })
@@ -139,7 +185,7 @@ class PerfilRestaurante extends Component {
                                             title: u.nomeCliente,
                                             source: { uri: u.imagemPedido },
                                         }}
-                                        linearGradientProps={{colors: ['#efcdac', '#d88434']}}
+                                        linearGradientProps={{ colors: ['#efcdac', '#d88434'] }}
                                         title={u.nomeCliente}
                                         subtitle={u.nomePrato}
                                         chevron
@@ -147,7 +193,7 @@ class PerfilRestaurante extends Component {
                                     <View style={{
                                         borderBottomColor: 'black',
                                         borderBottomWidth: 1,
-                                    }}/>
+                                    }} />
                                 </ScrollView>
                             )
                         })

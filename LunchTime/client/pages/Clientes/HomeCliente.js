@@ -65,11 +65,11 @@ export default class Cliente extends React.Component {
 
     render() {
         const data = this.state.restauranteInfo;
-        let dataDisplay = data.map(function (responseJson) {
+        let dataDisplay = data.map((responseJson) => {
             return (
                 <View key={responseJson.idRestaurante}>
-
-                    <TouchableOpacity style={styles.card}>
+                    <View style={styles.dividerProduto}></View>
+                    <TouchableOpacity style={styles.cardProduto} onPress={() => this.props.navigation.navigate('PaginaRestaurante', { userId: responseJson.idRestaurante })}>
                         <View>
                             <Image style={styles.imgCard} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxoeEY-M_PJBZ8rkUS8nfRo-HwkDys9iJkWG3xcdQfIyVRf0c1' }} />
                         </View>
@@ -88,9 +88,9 @@ export default class Cliente extends React.Component {
                 <TouchableHighlight style={styles.btnCad} onPress={() => this.props.navigation.navigate('PesquisarRestaurante')}>
                     <Text style={styles.textStyle}>Pesquisar</Text>
                 </TouchableHighlight>
-                <ScrollView contentContainerStyle={styles.container}>
+                <Card>
                     {dataDisplay}
-                </ScrollView>
+                </Card>
             </View>
         );
     }
