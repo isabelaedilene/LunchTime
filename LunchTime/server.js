@@ -2,6 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
+// socket.io responsável pelos eventos
+const socketio   = require('socket.io');
+
+
 // import models
 const models = require('./app/models');
 
@@ -100,3 +104,12 @@ var server = app.listen(9090, function(){
     console.log('server started');
 });
 
+// Inicia o socket
+const websocket = socketio(server);
+websocket.on('connection', function (socket) {
+    console.log('Socket' + socket.id);
+    socket.on('pedidoCliente', function (data) {
+        console.log(data);
+        websocket.emit('pedido', data)
+    })
+});

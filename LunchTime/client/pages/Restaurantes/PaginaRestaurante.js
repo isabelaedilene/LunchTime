@@ -4,8 +4,12 @@ import { Card, Button, Icon } from 'react-native-elements';
 import { styles } from '../../style';
 import serverUrl from '../../../connection';
 
+import SocketIOClient from 'socket.io-client';
+
 const apiUrl = serverUrl.SERVER_URL + "/restaurant/";
 const apiUrl_Produto = serverUrl.SERVER_URL + "/product/";
+const url = serverUrl.SERVER_URL;
+const clientUrl = serverUrl.SERVER_URL+"/client/";
 
 export default class DadosRestaurante extends Component {
     static navigationOptions = {
@@ -16,8 +20,14 @@ export default class DadosRestaurante extends Component {
         super(props);
         this.state = {
             produtosInfo: [],
-            user: {}
+            user: {},
+            pedido: [],
+            cliente: {}
         }
+        this.socket = SocketIOClient(url);
+        this.socket.on('pedido', (data) => {
+            console.log('Data received from server', data);
+        });
     }
 
     loadProdutos = (idRestaurante) => {
@@ -26,20 +36,50 @@ export default class DadosRestaurante extends Component {
         }).then((responseData) => {
             return responseData.json();
         }).then((jsonData) => {
-            console.log(jsonData);
             this.setState({ produtosInfo: jsonData.produtos })
-            console.log(this.state.produtosInfo)
         }).done();
     }
+
+    realizarPedido = (data) => {
+        try {
+            const pedido = {
+                idRestaurante: this.state.user.idRestaurante,
+                idCliente: this.state.cliente.idCliente,
+                IdProduto: data.idProduto,
+                valorCompra: data.valorProduto,
+                horarioChegada: data.tempoPreparo,
+                statusPedido: "realizado"
+            };
+            console.log("Dados do pedido");
+            console.log(pedido);
+            this.socket.emit('pedidoCliente', pedido)
+        } catch (e) {
+            console.log(e)
+        }
+
+    };
 
     componentDidMount() {
         const { navigation } = this.props;
         const userId = navigation.getParam('userId', 'Erro2');
+        const clienteId = navigation.getParam('clienteId', 'Erro');
+        console.log("Component Did Mount");
+        console.log(clienteId);
         this.getRestauranteInfo(userId);
-        console.log(userId);
-        console.log("State");
-        console.log(this.state);
+        this.getClienteInfo(clienteId);
         this.loadProdutos(userId);
+    }
+
+    getClienteInfo = async (id) => {
+        try {
+            let response = await fetch(clientUrl + id);
+            let responseJson = await response.json();
+            this.setState({
+                cliente: responseJson
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     getRestauranteInfo = async (id) => {
@@ -49,8 +89,6 @@ export default class DadosRestaurante extends Component {
             this.setState({
                 user: responseJson
             });
-            console.log("State dentro do método");
-            console.log(this.state);
         } catch (error) {
             console.log(error);
         }
@@ -59,7 +97,29 @@ export default class DadosRestaurante extends Component {
     render() {
 
         const data = this.state.produtosInfo;
-        let dataDisplay = data.map(function (responseJson) {
+        let dataDisplay = data.map((produto) => {
+            return(
+                <View key={produto.idProduto}>
+                    <View style={styles.dividerProduto}></View>
+                    <TouchableOpacity style={styles.cardProduto}>
+                        <View>
+                            <Image style={styles.imgCard} source={{ uri: 'https://media-cdn.tripadvisor.com/media/photo-s/0c/b2/ee/a1/pizza-frango-catupiry.jpg' }} />
+                        </View>
+                        <View>
+                            <Text style={styles.nameRest}> {produto.nomeProduto} </Text>
+                            <Text style={styles.catRest}> Preço: R$ {produto.valorProduto} </Text>
+                            <Text style={styles.catRest}> Tempo de </Text>
+                            <Text style={styles.catRest}> Preparo: {produto.tempoPreparo} </Text>
+                        </View>
+                    </TouchableOpacity>
+                    <Button
+                        onPress={this.realizarPedido(produto)}
+                        title="Realizar Pedido"
+                    />
+                </View>
+            )
+        });
+        /*let dataDisplay = data.map(function (responseJson) {
             return (
                 <View key={responseJson.idProduto}>
                     <View style={styles.dividerProduto}></View>
@@ -74,15 +134,11 @@ export default class DadosRestaurante extends Component {
                             <Text style={styles.catRest}> Preparo: {responseJson.tempoPreparo} </Text>
                         </View>
                     </TouchableOpacity>
-                    <Button
-                        buttonStyle={{ backgroundColor: 'red' }}
-                        buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-                        title="Realizar Pedido"
-                    />
+
 
                 </View>
             )
-        });
+        });*/
 
         return (
             <ScrollView>

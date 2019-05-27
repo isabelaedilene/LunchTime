@@ -23,19 +23,17 @@ export default class Cliente extends React.Component {
         }
     };
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             restauranteInfo: [],
             fontLoaded: false,
-            user: "",
+            user: null,
         }
     }
 
     profile = () => {
         const { navigation } = this.props;
         const user = navigation.getParam('user', 'Erro');
-        console.log("Dentro do perfil");
-        console.log(user.user.idCliente);
         this.props.navigation.navigate('DadosCliente', { userId: user.user.idCliente });
     };
 
@@ -45,10 +43,19 @@ export default class Cliente extends React.Component {
         });
         this.setState({ fontLoaded: true });
         this.loadRestaurants();
+        this.loadCliente();
     }
 
     componentDidMount() {
         const navigation = this.props.navigation.setParams({ profile: this.profile });
+    }
+
+    loadCliente = () => {
+        const { navigation } = this.props;
+        const cliente = navigation.getParam('user', 'Erro');
+        this.setState({user: cliente.user.idCliente});
+        console.log("CHECKING STATE ID CLIENTE");
+        console.log(this.state);
     }
 
     loadRestaurants = () => {
@@ -61,15 +68,16 @@ export default class Cliente extends React.Component {
             this.setState({ restauranteInfo: jsonData.restaurantes })
             console.log(this.state.restauranteInfo)
         }).done();
-    }
+    };
 
     render() {
         const data = this.state.restauranteInfo;
+        const clienteId = this.state.user;
         let dataDisplay = data.map((responseJson) => {
             return (
                 <View key={responseJson.idRestaurante}>
                     <View style={styles.dividerProduto}></View>
-                    <TouchableOpacity style={styles.cardProduto} onPress={() => this.props.navigation.navigate('PaginaRestaurante', { userId: responseJson.idRestaurante })}>
+                    <TouchableOpacity style={styles.cardProduto} onPress={() => this.props.navigation.navigate('PaginaRestaurante', { userId: responseJson.idRestaurante, clienteId: clienteId })}>
                         <View>
                             <Image style={styles.imgCard} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxoeEY-M_PJBZ8rkUS8nfRo-HwkDys9iJkWG3xcdQfIyVRf0c1' }} />
                         </View>
