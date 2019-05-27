@@ -113,7 +113,7 @@ export default class DadosRestaurante extends Component {
                         </View>
                     </TouchableOpacity>
                     <Button
-                        onPress={this.realizarPedido(produto)}
+                        onPress={() => this.realizarPedido(produto)}
                         title="Realizar Pedido"
                     />
                 </View>
