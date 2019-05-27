@@ -38,7 +38,7 @@ export default class DadosRestaurante extends Component {
         }).then((jsonData) => {
             this.setState({ produtosInfo: jsonData.produtos })
         }).done();
-    }
+    };
 
     realizarPedido = (data) => {
         try {
@@ -80,7 +80,7 @@ export default class DadosRestaurante extends Component {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     getRestauranteInfo = async (id) => {
         try {
@@ -119,26 +119,6 @@ export default class DadosRestaurante extends Component {
                 </View>
             )
         });
-        /*let dataDisplay = data.map(function (responseJson) {
-            return (
-                <View key={responseJson.idProduto}>
-                    <View style={styles.dividerProduto}></View>
-                    <TouchableOpacity style={styles.cardProduto}>
-                        <View>
-                            <Image style={styles.imgCard} source={{ uri: 'https://media-cdn.tripadvisor.com/media/photo-s/0c/b2/ee/a1/pizza-frango-catupiry.jpg' }} />
-                        </View>
-                        <View>
-                            <Text style={styles.nameRest}> {responseJson.nomeProduto} </Text>
-                            <Text style={styles.catRest}> Preço: R$ {responseJson.valorProduto} </Text>
-                            <Text style={styles.catRest}> Tempo de </Text>
-                            <Text style={styles.catRest}> Preparo: {responseJson.tempoPreparo} </Text>
-                        </View>
-                    </TouchableOpacity>
-
-
-                </View>
-            )
-        });*/
 
         return (
             <ScrollView>
