@@ -23,7 +23,7 @@ export default class DadosRestaurante extends Component {
             user: {},
             pedido: [],
             cliente: {}
-        }
+        };
         this.socket = SocketIOClient(url);
         this.socket.on('pedido', (data) => {
             console.log('Data received from server', data);

@@ -5,6 +5,8 @@ import serverUrl from '../../../connection';
 import { styles } from '../../style';
 
 const apiUrl = serverUrl.SERVER_URL + "/product/";
+const url = serverUrl.SERVER_URL;
+import SocketIOClient from 'socket.io-client';
 
 const pedidos = [
     {
@@ -53,9 +55,18 @@ class PerfilRestaurante extends Component {
         super(props);
         this.state = {
             produtosInfo: [],
-            user: ""
-        }
+            user: "",
+            pedido: {},
+        };
+        this.socket = SocketIOClient(url);
+        this.socket.on('pedidoRestaurante', (data) => {
+            console.log('Data received from server', data);
+        });
     }
+
+    sendRespAoCliente = () => {
+        this.socket.emit('respAoCliente', this.state.pedido)
+    };
 
     profile = () => {
         const { navigation } = this.props;

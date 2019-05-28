@@ -110,6 +110,11 @@ websocket.on('connection', function (socket) {
     console.log('Socket' + socket.id);
     socket.on('pedidoCliente', function (data) {
         console.log(data);
+        websocket.emit('pedidoRestaurante', data)
+    });
+    socket.on('respAoCliente', function (data) {
+        console.log("Resposta ao cliente referente ao andamento do pedido");
+        console.log(data);
         websocket.emit('pedido', data)
-    })
+    });
 });
