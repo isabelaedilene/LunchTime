@@ -21,12 +21,12 @@ export default class DadosRestaurante extends Component {
         this.state = {
             produtosInfo: [],
             user: {},
-            pedido: [],
+            pedido: {},
             cliente: {}
         };
         this.socket = SocketIOClient(url);
         this.socket.on('pedido', (data) => {
-            console.log('Data received from server', data);
+            console.log('0006 - Resposta recebida do restaurante', data);
         });
     }
 
@@ -50,7 +50,7 @@ export default class DadosRestaurante extends Component {
                 horarioChegada: data.tempoPreparo,
                 statusPedido: "realizado"
             };
-            console.log("Dados do pedido");
+            console.log("Dados do pedido 0001");
             console.log(pedido);
             this.socket.emit('pedidoCliente', pedido)
         } catch (e) {

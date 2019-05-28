@@ -105,15 +105,18 @@ var server = app.listen(9090, function(){
 });
 
 // Inicia o socket
+let dados = {};
 const websocket = socketio(server);
 websocket.on('connection', function (socket) {
-    console.log('Socket' + socket.id);
     socket.on('pedidoCliente', function (data) {
-        console.log(data);
-        websocket.emit('pedidoRestaurante', data)
+        dados = data;
+        console.log("0002 Enviando ao restaurante ", data);
     });
+
+    websocket.emit('pedidoRestaurante', dados);
+
     socket.on('respAoCliente', function (data) {
-        console.log("Resposta ao cliente referente ao andamento do pedido");
+        console.log("0005 - Enviando resposta ao cliente referente ao andamento do pedido");
         console.log(data);
         websocket.emit('pedido', data)
     });

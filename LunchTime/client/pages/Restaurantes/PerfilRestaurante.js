@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image, TouchableHighlight, Modal, Alert } from 'react-native';
 import { Card, ListItem, Divider, Icon } from 'react-native-elements';
 import serverUrl from '../../../connection';
 import { styles } from '../../style';
@@ -57,15 +57,38 @@ class PerfilRestaurante extends Component {
             produtosInfo: [],
             user: "",
             pedido: {},
+            modalVisible: false,
         };
         this.socket = SocketIOClient(url);
         this.socket.on('pedidoRestaurante', (data) => {
-            console.log('Data received from server', data);
-        });
+            console.log('0003 Pedido do cliente recebido pelo servidor e enviado ao cliente', data);
+            data.statusPedido = "recebido";
+            this.setState({
+                pedido: data
+            });
+            console.log(this.state);
+            console.log("0003??? Here man!");
+        })
     }
 
     sendRespAoCliente = () => {
-        this.socket.emit('respAoCliente', this.state.pedido)
+        console.log("0004 enviando ao server");
+        this.socket.emit('respAoCliente', this.state.pedido);
+    };
+
+    abrirModal = () => {
+        this.setState({
+            modalVisible: true
+        })
+    };
+
+    fecharModal = () => {
+        this.setState({
+            modalVisible: false
+        });
+        this.sendRespAoCliente();
+        console.log("0004 State ao enviar resposta");
+        console.log(this.state);
     };
 
     profile = () => {
@@ -95,7 +118,7 @@ class PerfilRestaurante extends Component {
             this.setState({ produtosInfo: jsonData.produtos })
             console.log(this.state.produtosInfo)
         }).done();
-    }
+    };
 
     async componentWillMount() {
         this.loadProdutos();
@@ -135,8 +158,35 @@ class PerfilRestaurante extends Component {
                     </TouchableHighlight>
                 </View>
                 <Card title="Produtos">
-                        {dataDisplay}
-                    </Card>
+                    {dataDisplay}
+                </Card>
+                <View style={{marginTop: 22}}>
+                    <Modal
+                        animationType="slide"
+                        transparent={false}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert('Modal de Pedido', 'Modal fechado');
+                        }}>
+                        <View style={{marginTop: 22}}>
+                            <View>
+                                <Text>Hello World</Text>
+                                <TouchableHighlight
+                                    onPress={() => {
+                                        this.fecharModal();
+                                    }}>
+                                    <Text>Hide modal!</Text>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                    </Modal>
+                    <TouchableHighlight
+                        onPress={() => {
+                            this.abrirModal();
+                        }}>
+                        <Text>Atualizar Pedidos</Text>
+                    </TouchableHighlight>
+                </View>
                 <Card title="Novos Pedidos" containerStyle={{ backgroundColor: '#1cba0b' }}>
                     {
                         pedidos.map((u, i) => {
