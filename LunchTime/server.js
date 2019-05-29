@@ -57,6 +57,7 @@ const index = require('./app/routes/index');
 const restaurantRoute = require('./app/routes/restaurantRoute');
 const clientRoute = require('./app/routes/clientRoute');
 const productRoute = require('./app/routes/productRoute');
+const pedidoRoute = require('./app/routes/pedidoRoute');
 
 
 const getUser = async obj => {
@@ -95,6 +96,7 @@ app.use('/', index);
 app.use('/restaurant', restaurantRoute);
 app.use('/client', clientRoute);
 app.use('/product', productRoute);
+app.use('/pedido', pedidoRoute);
 
 // Server funcionando vai exibir essa mensagem no console, porta 9090
 var server = app.listen(9090, function(){

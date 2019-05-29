@@ -1,7 +1,7 @@
 
 module.exports = (sequelize, DataTypes) => {
     const Pedido = sequelize.define('Pedidos', {
-        idPedido: {
+        idPedidos: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       statusPedido: DataTypes.STRING,
     });
     Pedido.associate = models =>{
-    Pedido.hasMany(models.ImagemPedidos, {foreignKey: 'idPedido_fk', sourceKey: 'idPedido'});
-    Pedido.hasOne(models.AvaliacaoPedidos, {foreignKey: 'idPedido_fk'});
+        Pedido.belongsTo(models.Restaurantes, {foreignKey: 'idRestaurante_fk', targetKey: 'idRestaurante'});
+        Pedido.hasMany(models.ImagemPedidos, {foreignKey: 'idPedido_fk', sourceKey: 'idPedidos'});
+        Pedido.hasOne(models.AvaliacaoPedidos, {foreignKey: 'idPedido_fk'});
     }
     return Pedido;
   }

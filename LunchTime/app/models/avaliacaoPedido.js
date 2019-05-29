@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         comentarioPedido: DataTypes.STRING,
     });
     AvaliacaoPedido.associate = models =>{
-        AvaliacaoPedido.belongsTo(models.Pedidos, {foreignKey: 'idPedido_fk', targetKey: 'idPedido'});
+        AvaliacaoPedido.belongsTo(models.Pedidos, {foreignKey: 'idPedido_fk', targetKey: 'idPedidos'});
     }
 
     return AvaliacaoPedido;

@@ -86,14 +86,12 @@ class PerfilRestaurante extends Component {
         this.setState({
             modalVisible: false
         });
-        if (this.state.pedido != null){
+        if (this.state.pedido.hasOwnProperty('idCliente')){
             this.sendRespAoCliente();
             console.log("0004 State ao enviar resposta");
             console.log(this.state);
         }
-        this.setState({pedido: null});
-        console.log("State depois de enviar ao cliente");
-        console.log(this.state.pedido);
+        this.setState({pedido: {}}); //setPedido para objeto vazio depois de enviar ao cliente
     };
 
     profile = () => {
@@ -175,21 +173,23 @@ class PerfilRestaurante extends Component {
                         }}>
                         <View style={{marginTop: 22}}>
                             <View>
-                                <Text>Hello World</Text>
-                                <TouchableHighlight
+                                <Text>Atualizando Pedidos...</Text>
+                                <Button
+                                    title="Fechar Modal"
                                     onPress={() => {
                                         this.fecharModal();
                                     }}>
-                                    <Text>Hide modal!</Text>
-                                </TouchableHighlight>
+                                >
+                                </Button>
                             </View>
                         </View>
                     </Modal>
-                    <Button>
+                    <Button
+                        title="Atualizer Pedidos"
                         onPress={() => {
                             this.abrirModal();
                         }}>
-                        <Text>Atualizar Pedidos</Text>
+                    >
                     </Button>
                 </View>
                 <Card title="Novos Pedidos" containerStyle={{ backgroundColor: '#1cba0b' }}>

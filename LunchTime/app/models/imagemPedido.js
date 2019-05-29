@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         nomeImagemPedido: DataTypes.STRING,
     });
     ImagemPedido.associate = models =>{
-    ImagemPedido.belongsTo(models.Pedidos, {foreignKey: 'idPedido_fk', targetKey: 'idPedido'});
+    ImagemPedido.belongsTo(models.Pedidos, {foreignKey: 'idPedido_fk', targetKey: 'idPedidos'});
     }
     return ImagemPedido;
   }
