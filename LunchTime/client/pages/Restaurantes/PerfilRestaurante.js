@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, TouchableHighlight, Modal, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image, TouchableHighlight, Modal, Alert, Button } from 'react-native';
 import { Card, ListItem, Divider, Icon } from 'react-native-elements';
 import serverUrl from '../../../connection';
 import { styles } from '../../style';
@@ -64,10 +64,10 @@ class PerfilRestaurante extends Component {
             console.log('0003 Pedido do cliente recebido pelo servidor e enviado ao cliente', data);
             data.statusPedido = "recebido";
             this.setState({
-                pedido: data
+                pedido: data,
+                modalVisible: true
             });
             console.log(this.state);
-            console.log("0003??? Here man!");
         })
     }
 
@@ -86,9 +86,14 @@ class PerfilRestaurante extends Component {
         this.setState({
             modalVisible: false
         });
-        this.sendRespAoCliente();
-        console.log("0004 State ao enviar resposta");
-        console.log(this.state);
+        if (this.state.pedido != null){
+            this.sendRespAoCliente();
+            console.log("0004 State ao enviar resposta");
+            console.log(this.state);
+        }
+        this.setState({pedido: null});
+        console.log("State depois de enviar ao cliente");
+        console.log(this.state.pedido);
     };
 
     profile = () => {
@@ -180,12 +185,12 @@ class PerfilRestaurante extends Component {
                             </View>
                         </View>
                     </Modal>
-                    <TouchableHighlight
+                    <Button>
                         onPress={() => {
                             this.abrirModal();
                         }}>
                         <Text>Atualizar Pedidos</Text>
-                    </TouchableHighlight>
+                    </Button>
                 </View>
                 <Card title="Novos Pedidos" containerStyle={{ backgroundColor: '#1cba0b' }}>
                     {
