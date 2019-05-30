@@ -6,6 +6,7 @@ import { styles } from '../../style';
 
 const apiUrl = serverUrl.SERVER_URL + "/product/";
 const url = serverUrl.SERVER_URL;
+const savePedido = serverUrl.SERVER_URL + /pedido/;
 import SocketIOClient from 'socket.io-client';
 
 const pedidos = [
@@ -72,6 +73,23 @@ class PerfilRestaurante extends Component {
     }
 
     sendRespAoCliente = () => {
+        fetch(savePedido, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                IdProduto: this.state.pedido.IdProduto,
+                idRestaurante_fk: this.state.pedido.idRestaurante_fk,
+                valorCompra: this.state.pedido.valorCompra,
+                horarioChegada: this.state.pedido.horarioChegada,
+                statusPedido: this.state.pedido.horarioChegada,
+                idCliente_fk: this.state.pedido.idCliente_fk
+            })
+        }).then((responseData) => {
+            return responseData.json();
+        });
         console.log("0004 enviando ao server");
         this.socket.emit('respAoCliente', this.state.pedido);
     };
