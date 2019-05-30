@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Text, ScrollView, Image } from 'react-native';
+import {TouchableOpacity, View, Text, ScrollView, Image, Modal, Alert} from 'react-native';
 import { Card, Button, Icon } from 'react-native-elements';
 import { styles } from '../../style';
 import serverUrl from '../../../connection';
@@ -22,11 +22,16 @@ export default class DadosRestaurante extends Component {
             produtosInfo: [],
             user: {},
             pedido: {},
-            cliente: {}
+            cliente: {},
+            modalVisible: false,
         };
         this.socket = SocketIOClient(url);
         this.socket.on('pedido', (data) => {
             console.log('0006 - Resposta recebida do restaurante', data);
+            this.setState({
+                pedido: data,
+                modalVisible: true
+            });
         });
     }
 
@@ -94,9 +99,31 @@ export default class DadosRestaurante extends Component {
         }
     };
 
+    abrirModal = () => {
+        this.setState({
+            modalVisible: true
+        })
+    };
+
+    fecharModal = () => {
+        this.setState({
+            modalVisible: false
+        });
+    };
+
     render() {
 
         const data = this.state.produtosInfo;
+        const msgOK =
+            <Text>
+                Há um novo pedido.
+                {this.state.pedido.idCliente_fk}
+                {this.state.pedido.idRestaurante_fk}
+                {this.state.pedido.statusPedido}
+            </Text>;
+
+        const msgFail = <Text>Não há novos pedidos</Text>;
+
         let dataDisplay = data.map((produto) => {
             return(
                 <View key={produto.idProduto}>
@@ -145,6 +172,36 @@ export default class DadosRestaurante extends Component {
                         Telefone: {this.state.user.telefoneRestaurante}
                     </Text>
                 </Card>
+                <View style={{marginTop: 22}}>
+                    <Modal
+                        animationType="slide"
+                        transparent={false}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert('Modal de Pedido', 'Modal fechado');
+                        }}>
+                        <View style={{marginTop: 22}}>
+                            <View>
+                                <Text>Atualizando Meu Pedido...</Text>
+                                {this.state.pedido.statusPedido === "recebido" ? msgOK : msgFail}
+                                <Button
+                                    title="Fechar Modal"
+                                    onPress={() => {
+                                        this.fecharModal();
+                                    }}>
+                                    >
+                                </Button>
+                            </View>
+                        </View>
+                    </Modal>
+                    <Button
+                        title="Atualizar Pedidos"
+                        onPress={() => {
+                            this.abrirModal();
+                        }}>
+                        >
+                    </Button>
+                </View>
                 <Card>
                     {dataDisplay}
                 </Card>
