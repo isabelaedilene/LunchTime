@@ -92,14 +92,16 @@ export default class Cliente extends React.Component {
         });
 
         return (
-            <View style={styles.container}>
-                <TouchableHighlight style={styles.btnCad} onPress={() => this.props.navigation.navigate('PesquisarRestaurante')}>
-                    <Text style={styles.textStyle}>Pesquisar</Text>
-                </TouchableHighlight>
-                <Card>
-                    {dataDisplay}
-                </Card>
-            </View>
+            <ScrollView>
+                <View style={styles.container}>
+                    <TouchableHighlight style={styles.btnCad} onPress={() => this.props.navigation.navigate('PesquisarRestaurante')}>
+                        <Text style={styles.textStyle}>Pesquisar</Text>
+                    </TouchableHighlight>
+                    <Card>
+                        {dataDisplay}
+                    </Card>
+                </View>
+            </ScrollView>
         );
     }
 }
