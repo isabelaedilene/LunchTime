@@ -81,11 +81,11 @@ class PerfilRestaurante extends Component {
             },
             body: JSON.stringify({
                 IdProduto: this.state.pedido.IdProduto,
-                idRestaurante_fk: this.state.pedido.idRestaurante_fk,
+                idRestaurante_fk: this.state.pedido.idRestaurante,
                 valorCompra: this.state.pedido.valorCompra,
                 horarioChegada: this.state.pedido.horarioChegada,
                 statusPedido: this.state.pedido.horarioChegada,
-                idCliente_fk: this.state.pedido.idCliente_fk
+                idCliente_fk: this.state.pedido.idCliente
             })
         }).then((responseData) => {
             return responseData.json();
@@ -151,6 +151,16 @@ class PerfilRestaurante extends Component {
 
     render() {
         const data = this.state.produtosInfo;
+        const msgOK =
+            <Text>
+                Há um novo pedido.
+                {this.state.pedido.idCliente_fk}
+                {this.state.pedido.idRestaurante_fk}
+                {this.state.pedido.statusPedido}
+            </Text>;
+
+        const msgFail = <Text>Não há novos pedidos</Text>;
+
         let dataDisplay = data.map((responseJson) => {
             return (
                 <View key={responseJson.idProduto}>
@@ -192,6 +202,7 @@ class PerfilRestaurante extends Component {
                         <View style={{marginTop: 22}}>
                             <View>
                                 <Text>Atualizando Pedidos...</Text>
+                                {this.state.pedido.hasOwnProperty('idCliente') ? msgOK : msgFail}
                                 <Button
                                     title="Fechar Modal"
                                     onPress={() => {
@@ -203,7 +214,7 @@ class PerfilRestaurante extends Component {
                         </View>
                     </Modal>
                     <Button
-                        title="Atualizer Pedidos"
+                        title="Atualizar Pedidos"
                         onPress={() => {
                             this.abrirModal();
                         }}>
