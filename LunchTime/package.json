@@ -10,7 +10,7 @@
     "@expo/vector-icons": "latest",
     "body-parser": "^1.18.3",
     "color": "latest",
-    "expo": "^32.0.0",
+    "expo": "^46.0.14",
     "express": "^4.16.4",
     "jsonwebtoken": "latest",
     "mysql2": "^1.6.5",
